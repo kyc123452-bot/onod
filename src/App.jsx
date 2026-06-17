@@ -13,7 +13,7 @@ import categoryBathOnsen from "./assets/category-bath-onsen.png";
 import categorySaunaStones from "./assets/category-sauna-stones.png";
 import therapyBg from "./assets/therapy-bg.jpg";
 import onodLogo from "./assets/onod-logo.svg";
-import onodMagazineVisual from "./assets/onod-magazine-visual.webp";
+import onodSaunaSteam from "./assets/onod-sauna-steam.png";
 
 const navItems = ["오노드", "제품", "B2B 문의", "뉴스레터"];
 
@@ -342,7 +342,7 @@ function OnodPage() {
         </p>
       </div>
       <figure className="onod-visual">
-        <img src={onodMagazineVisual} alt="" />
+        <img src={onodSaunaSteam} alt="" />
         <figcaption>Warm water, quiet heat, and the scent that remains.</figcaption>
       </figure>
       <div className="onod-editorial">
