@@ -1378,20 +1378,44 @@ img {
 
   .category-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 22px;
   }
 
   .category-card,
   .category-card.wide {
-    grid-template-rows: 250px auto;
+    position: relative;
+    display: block;
     grid-column: auto;
+    height: clamp(360px, 106vw, 520px);
     opacity: 0.68;
     filter: none;
     transform: translateY(20px) scale(0.97);
+    color: #fff;
+    background: #151515;
+    border: 0;
     transition:
       transform 180ms ease-out,
       opacity 180ms ease-out,
       filter 180ms ease-out;
+  }
+
+  .category-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 34%, rgba(0, 0, 0, 0.52) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0) 58%);
+    pointer-events: none;
+  }
+
+  .category-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    filter: saturate(0.86) contrast(0.96);
   }
 
   .category-card.is-muted,
@@ -1412,29 +1436,46 @@ img {
   }
 
   .category-copy {
-    grid-template-columns: auto 1fr;
-    gap: 8px 14px;
-    padding: 18px 18px 20px;
-    min-height: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: block;
+    padding: 0 24px 28px;
+    min-height: 0;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.32);
   }
 
   .category-index {
-    min-width: 28px;
+    display: inline-block;
+    min-width: 32px;
+    margin-bottom: 14px;
+    padding-top: 5px;
+    color: rgba(255, 255, 255, 0.74);
     font-size: 10px;
   }
 
   .category-card h2,
   .category-card:not(.wide) h2 {
-    font-size: 23px;
+    font-size: 32px;
   }
 
   .category-card p,
   .category-card a {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .category-card p {
+    max-width: 280px;
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.55;
+  }
+
+  .category-card a {
+    margin-top: 18px;
+    color: #fff;
   }
 
   .therapy {
