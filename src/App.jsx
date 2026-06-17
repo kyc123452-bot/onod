@@ -602,19 +602,10 @@ function Categories() {
           rect.bottom > clearTop && rect.top < clearBottom && cardCenter > clearTop && cardCenter < clearBottom;
 
         if (isMobile) {
-          const fadeStart = viewportHeight * 1.03;
-          const fadeEnd = viewportHeight * 0.34;
-          const rawProgress = (fadeStart - cardCenter) / (fadeStart - fadeEnd);
-          const progress = Math.max(0, Math.min(1, rawProgress));
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const opacity = 0.58 + eased * 0.42;
-          const translate = 22 - eased * 22;
-          const scale = 0.965 + eased * 0.035;
-
-          card.style.setProperty("--scroll-opacity", opacity.toFixed(3));
-          card.style.setProperty("--scroll-y", `${translate.toFixed(2)}px`);
-          card.style.setProperty("--scroll-scale", scale.toFixed(3));
-          card.classList.toggle("is-visible", progress > 0.98);
+          card.style.removeProperty("--scroll-opacity");
+          card.style.removeProperty("--scroll-y");
+          card.style.removeProperty("--scroll-scale");
+          card.classList.add("is-visible");
           return;
         }
 

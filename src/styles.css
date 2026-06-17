@@ -1387,14 +1387,13 @@ img {
     display: block;
     grid-column: auto;
     height: clamp(360px, 106vw, 520px);
-    opacity: var(--scroll-opacity, 0.58);
+    opacity: 1;
     filter: none;
-    transform: translateY(var(--scroll-y, 22px)) scale(var(--scroll-scale, 0.965));
+    transform: none;
     color: #fff;
     background: #151515;
     border: 0;
-    transition: filter 180ms ease-out;
-    will-change: transform, opacity;
+    transition: none;
   }
 
   .category-card::after {
@@ -1423,9 +1422,9 @@ img {
   }
 
   .category-card.is-visible {
-    opacity: var(--scroll-opacity, 1);
+    opacity: 1;
     filter: none;
-    transform: translateY(var(--scroll-y, 0)) scale(var(--scroll-scale, 1));
+    transform: none;
   }
 
   .category-card.is-visible img {
