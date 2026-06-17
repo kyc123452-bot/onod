@@ -73,6 +73,13 @@ const products = [
 
 const shopCategories = ["전체", "배스", "사우나", "바디", "헤어"];
 
+const categoryProductMap = {
+  BATH: "배스",
+  BODY: "바디",
+  HAIR: "헤어",
+  SAUNA: "사우나",
+};
+
 const shopProducts = [
   ...products,
   {
@@ -374,12 +381,17 @@ function OnodPage() {
   );
 }
 
-function ProductPage() {
-  const [selectedCategory, setSelectedCategory] = useState("전체");
+function ProductPage({ initialCategory = "전체" }) {
+  const normalizedInitialCategory = shopCategories.includes(initialCategory) ? initialCategory : "전체";
+  const [selectedCategory, setSelectedCategory] = useState(normalizedInitialCategory);
   const visibleProducts =
     selectedCategory === "전체"
       ? shopProducts
       : shopProducts.filter((product) => product.line === selectedCategory);
+
+  useEffect(() => {
+    setSelectedCategory(normalizedInitialCategory);
+  }, [normalizedInitialCategory]);
 
   return (
     <section className="tab-page product-page" id="제품">
@@ -663,7 +675,9 @@ function Categories() {
               <span className="category-index">{String(index + 1).padStart(2, "0")}</span>
               <h2>{category.title}</h2>
               <p>{category.body}</p>
-              <a href="#제품">제품 더보기</a>
+              <a href={`#제품?category=${encodeURIComponent(categoryProductMap[category.title] || "전체")}`}>
+                제품 더보기
+              </a>
             </div>
           </article>
         ))}
@@ -715,7 +729,9 @@ function Footer() {
 
 export function App() {
   const [hash, setHash] = useState(() => decodeURIComponent(window.location.hash || "#top"));
-  const standalonePage = ["#오노드", "#제품", "#B2B 문의", "#뉴스레터"].includes(hash) ? hash : null;
+  const routeHash = hash.split("?")[0];
+  const selectedProductCategory = new URLSearchParams(hash.split("?")[1] || "").get("category") || "전체";
+  const standalonePage = ["#오노드", "#제품", "#B2B 문의", "#뉴스레터"].includes(routeHash) ? routeHash : null;
 
   useEffect(() => {
     const syncHash = () => setHash(decodeURIComponent(window.location.hash || "#top"));
@@ -752,7 +768,7 @@ export function App() {
     }
 
     const jumpToHashTarget = () => {
-      const target = document.getElementById(hash.replace("#", ""));
+      const target = document.getElementById(routeHash.replace("#", ""));
 
       if (!target) return;
 
@@ -765,11 +781,11 @@ export function App() {
       window.setTimeout(jumpToHashTarget, 0);
       window.setTimeout(jumpToHashTarget, 80);
     });
-  }, [hash, standalonePage]);
+  }, [hash, routeHash, standalonePage]);
 
   const renderStandalonePage = () => {
     if (standalonePage === "#오노드") return <OnodPage />;
-    if (standalonePage === "#제품") return <ProductPage />;
+    if (standalonePage === "#제품") return <ProductPage initialCategory={selectedProductCategory} />;
     if (standalonePage === "#B2B 문의") return <B2BPage />;
     if (standalonePage === "#뉴스레터") return <NewsletterPage />;
 
