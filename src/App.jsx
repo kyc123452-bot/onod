@@ -4,6 +4,7 @@ import heroOnodYukemuri from "./assets/hero-onod-yukemuri.png";
 import heroYukemuriMotion from "./assets/hero-yukemuri-motion.mp4";
 import productSet from "./assets/product-set.jpg";
 import productSpray from "./assets/product-spray.jpg";
+import productBathTeaSingle from "./assets/product-bath-tea-single.png";
 import productShampoo from "./assets/product-shampoo.jpg";
 import productBodywash from "./assets/product-bodywash.png";
 import categoryHair from "./assets/category-hair.jpg";
@@ -47,7 +48,7 @@ const products = [
     desc: "유케무리 기소 히노키 배스 티",
     price: "18,000원",
     discount: "15%",
-    image: productSpray,
+    image: productBathTeaSingle,
     tags: ["BEST"],
   },
   {
