@@ -1386,7 +1386,8 @@ img {
     position: relative;
     display: block;
     grid-column: auto;
-    height: clamp(360px, 106vw, 520px);
+    aspect-ratio: 1 / 1;
+    height: auto;
     opacity: 1;
     filter: none;
     transform: none;
