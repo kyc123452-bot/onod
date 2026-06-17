@@ -538,7 +538,7 @@ function ProductCard({ product }) {
   return (
     <article className="product-card">
       <div className="product-image-wrap">
-        <img src={product.image} alt={product.name} />
+        <img src={productBathTeaSingle} alt={product.name} />
         <button className="wish-button" aria-label={`${product.name} 찜하기`}>
           <Heart size={22} strokeWidth={2} />
         </button>
