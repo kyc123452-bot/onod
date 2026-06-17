@@ -337,13 +337,13 @@ img {
 }
 
 .onod-visual {
-  max-width: 660px;
+  max-width: 980px;
   margin: 84px auto 0;
 }
 
 .onod-visual img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 9;
   display: block;
   object-fit: cover;
 }
@@ -1140,7 +1140,7 @@ img {
   }
 
   .onod-visual img {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 16 / 9;
   }
 
   .onod-visual figcaption {
