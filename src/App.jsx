@@ -201,6 +201,9 @@ function Header() {
           <button className="icon-button drawer-close" onClick={() => setOpen(false)} aria-label="메뉴 닫기">
             <X size={22} />
           </button>
+          <a href="#top" onClick={() => setOpen(false)}>
+            홈
+          </a>
           {navItems.map((item) => (
             <a key={item} href={`#${item}`} onClick={() => setOpen(false)}>
               {item}
