@@ -176,7 +176,7 @@ const categories = [
   },
 ];
 
-function Header() {
+function Header({ isLoggedIn }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -199,12 +199,12 @@ function Header() {
           <button className="icon-button" aria-label="검색">
             <Search size={20} />
           </button>
-          <button className="icon-button" aria-label="계정">
+          <a className="icon-button" href={isLoggedIn ? "#사용자" : "#로그인"} aria-label="계정">
             <UserRound size={20} />
-          </button>
-          <button className="icon-button" aria-label="장바구니">
+          </a>
+          <a className="icon-button" href="#장바구니" aria-label="장바구니">
             <ShoppingBag size={20} />
-          </button>
+          </a>
         </div>
       </nav>
       <div className={`mobile-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}>
@@ -220,6 +220,12 @@ function Header() {
               {item}
             </a>
           ))}
+          <a href={isLoggedIn ? "#사용자" : "#로그인"} onClick={() => setOpen(false)}>
+            {isLoggedIn ? "사용자" : "로그인"}
+          </a>
+          <a href="#장바구니" onClick={() => setOpen(false)}>
+            장바구니
+          </a>
         </div>
       </div>
     </header>
@@ -663,6 +669,107 @@ function NewsletterPage() {
   );
 }
 
+function LoginPage({ onLogin, context = "로그인이 필요한 서비스입니다." }) {
+  const completeLogin = () => {
+    onLogin();
+    window.location.hash = "#사용자";
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    completeLogin();
+  };
+
+  return (
+    <section className="tab-page auth-page" id="로그인">
+      <div className="auth-panel">
+        <span>ONOD MEMBER</span>
+        <h1>로그인</h1>
+        <p>{context}</p>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <label>
+            아이디 또는 이메일
+            <input type="email" placeholder="email@onod.kr" />
+          </label>
+          <label>
+            비밀번호
+            <input type="password" placeholder="비밀번호" />
+          </label>
+          <button type="submit">로그인</button>
+        </form>
+        <button className="kakao-login" type="button" onClick={completeLogin}>
+          카카오로 시작하기
+        </button>
+        <div className="login-links">
+          <a href="#로그인">아이디 찾기</a>
+          <a href="#로그인">비밀번호 찾기</a>
+          <a href="#로그인">회원가입</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AccountPage({ onLogout }) {
+  return (
+    <section className="tab-page account-page" id="사용자">
+      <div className="account-layout">
+        <div className="account-summary">
+          <span>MY ONOD</span>
+          <h1>사용자</h1>
+          <p>오노드 회원님의 주문과 관심상품을 확인할 수 있는 공간입니다.</p>
+          <button type="button" onClick={onLogout}>
+            로그아웃
+          </button>
+        </div>
+        <div className="account-grid">
+          <article>
+            <small>ORDER</small>
+            <strong>0</strong>
+            <p>진행 중인 주문</p>
+          </article>
+          <article>
+            <small>POINT</small>
+            <strong>0P</strong>
+            <p>사용 가능 적립금</p>
+          </article>
+          <article>
+            <small>WISH</small>
+            <strong>0</strong>
+            <p>관심상품</p>
+          </article>
+          <article>
+            <small>COUPON</small>
+            <strong>0</strong>
+            <p>보유 쿠폰</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CartPage({ isLoggedIn, onLogin }) {
+  if (!isLoggedIn) {
+    return <LoginPage onLogin={onLogin} context="장바구니를 확인하려면 먼저 로그인해주세요." />;
+  }
+
+  return (
+    <section className="tab-page cart-page" id="장바구니">
+      <div className="cart-head">
+        <span>SHOPPING BAG</span>
+        <h1>장바구니</h1>
+      </div>
+      <div className="cart-empty">
+        <ShoppingBag size={34} strokeWidth={1.6} />
+        <h2>장바구니가 비어 있습니다.</h2>
+        <p>마음에 드는 오노드 제품을 담아 휴식의 루틴을 준비해보세요.</p>
+        <a href="#제품">제품 보러가기</a>
+      </div>
+    </section>
+  );
+}
+
 function ProductCard({ product, isSelected = false, detailHref }) {
   const cardHref =
     detailHref || `#제품?category=${encodeURIComponent(product.line)}&product=${encodeURIComponent(product.name)}`;
@@ -839,7 +946,7 @@ function Footer() {
       </div>
       <div>
         <a href="#로그인">로그인</a>
-        <a href="#마이쇼핑">마이쇼핑</a>
+        <a href="#사용자">마이쇼핑</a>
         <a href="#장바구니">장바구니</a>
       </div>
       <p>
@@ -853,11 +960,24 @@ function Footer() {
 
 export function App() {
   const [hash, setHash] = useState(() => decodeURIComponent(window.location.hash || "#top"));
+  const [isLoggedIn, setIsLoggedIn] = useState(() => window.localStorage.getItem("onod-auth") === "true");
   const routeHash = hash.split("?")[0];
   const routeParams = new URLSearchParams(hash.split("?")[1] || "");
   const selectedProductCategory = routeParams.get("category") || "전체";
   const selectedProductName = routeParams.get("product") || "";
-  const standalonePage = ["#오노드", "#제품", "#B2B 문의", "#뉴스레터"].includes(routeHash) ? routeHash : null;
+  const standaloneRoutes = ["#오노드", "#제품", "#B2B 문의", "#뉴스레터", "#로그인", "#사용자", "#마이쇼핑", "#장바구니"];
+  const standalonePage = standaloneRoutes.includes(routeHash) ? routeHash : null;
+
+  const handleLogin = () => {
+    window.localStorage.setItem("onod-auth", "true");
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    window.localStorage.removeItem("onod-auth");
+    setIsLoggedIn(false);
+    window.location.hash = "#로그인";
+  };
 
   useEffect(() => {
     const syncHash = () => setHash(decodeURIComponent(window.location.hash || "#top"));
@@ -917,13 +1037,26 @@ export function App() {
     if (standalonePage === "#제품") return <ProductPage initialCategory={selectedProductCategory} />;
     if (standalonePage === "#B2B 문의") return <B2BPage />;
     if (standalonePage === "#뉴스레터") return <NewsletterPage />;
+    if (standalonePage === "#로그인") {
+      return isLoggedIn ? <AccountPage onLogout={handleLogout} /> : <LoginPage onLogin={handleLogin} />;
+    }
+    if (standalonePage === "#사용자" || standalonePage === "#마이쇼핑") {
+      return isLoggedIn ? (
+        <AccountPage onLogout={handleLogout} />
+      ) : (
+        <LoginPage onLogin={handleLogin} context="사용자 페이지를 확인하려면 먼저 로그인해주세요." />
+      );
+    }
+    if (standalonePage === "#장바구니") {
+      return <CartPage isLoggedIn={isLoggedIn} onLogin={handleLogin} />;
+    }
 
     return null;
   };
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn} />
       {standalonePage ? (
         <main>
           {renderStandalonePage()}
