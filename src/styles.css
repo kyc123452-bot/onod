@@ -314,8 +314,8 @@ img {
   height: 38px;
   display: grid;
   place-items: center;
-  border: 1px solid #e2e2e2;
-  background: #fafafa;
+  border: 0;
+  background: transparent;
 }
 
 .drawer-links {
