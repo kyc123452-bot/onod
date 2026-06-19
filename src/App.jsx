@@ -156,46 +156,6 @@ const CART_STORAGE_KEY = "onod-cart";
 
 const getProductKey = (product) => `${product.line}::${product.name}`;
 
-const getProductGuide = (product) => {
-  if (product.line === "사우나") {
-    return {
-      scent: "따뜻한 열기 속에서도 무겁지 않게 퍼지는 우디 허브 노트",
-      volume: product.name.includes("캡") ? "프리 사이즈 / 울 혼방" : "100ml",
-      composition: product.name.includes("캡") ? "사우나 울 캡 1개" : "타월 미스트 1개",
-      ingredients: "정제수, 식물성 향료, 편백잎오일, 유칼립투스잎오일",
-      usage: "사우나 전후 타월이나 공간에 가볍게 사용하고, 피부 직접 분사는 피해주세요.",
-    };
-  }
-
-  if (product.line === "바디") {
-    return {
-      scent: "샤워 뒤 은은하게 남는 허브 시트러스와 깨끗한 머스크",
-      volume: "300ml",
-      composition: `${product.name} 1개`,
-      ingredients: "정제수, 글리세린, 식물 유래 세정 성분, 로즈마리잎오일",
-      usage: "젖은 피부에 덜어 부드럽게 마사지한 뒤 미온수로 충분히 씻어주세요.",
-    };
-  }
-
-  if (product.line === "헤어") {
-    return {
-      scent: "두피를 산뜻하게 정돈하는 민트 허브와 깨끗한 우디 노트",
-      volume: "400ml",
-      composition: `${product.name} 1개`,
-      ingredients: "정제수, 식물 유래 계면활성제, 로즈마리잎오일, 멘톨",
-      usage: "젖은 모발과 두피에 마사지하듯 사용한 뒤 충분히 헹궈주세요.",
-    };
-  }
-
-  return {
-    scent: "기소 숲의 히노키 향과 온천의 온기를 닮은 맑고 차분한 우디 노트",
-    volume: product.name.includes("세트") ? "40g x 3ea" : "40g / 1 tea bag",
-    composition: product.name.includes("세트") ? "배스 티 3개입 세트" : "배스 티 1개입",
-    ingredients: "히노키 우드 파우더, 천연 소금, 편백잎, 식물성 향료",
-    usage: "욕조에 따뜻한 물을 받은 뒤 티백을 넣고 3-5분간 우려낸 후 입욕하세요.",
-  };
-};
-
 const categories = [
   {
     title: "BATH",
@@ -622,7 +582,6 @@ function ProductDetailPage({ productName, onAddToCart }) {
   const discountRate = parseWon(selectedProduct.discount);
   const retailPrice = Math.round(productPrice / (1 - discountRate / 100) / 100) * 100;
   const totalPrice = productPrice * quantity;
-  const productGuide = getProductGuide(selectedProduct);
 
   useEffect(() => {
     setQuantity(1);
@@ -731,56 +690,6 @@ function ProductDetailPage({ productName, onAddToCart }) {
         <button type="button">문의</button>
       </div>
       <div className="product-detail-shell" id="product-detail">
-        <span>DETAIL PAGE</span>
-        <h2>{selectedProduct.name}</h2>
-        <p>{productGuide.scent}</p>
-        <div className="detail-info-grid">
-          <article>
-            <small>SCENT</small>
-            <strong>향 설명</strong>
-            <p>{productGuide.scent}</p>
-          </article>
-          <article>
-            <small>VOLUME</small>
-            <strong>용량 / 구성</strong>
-            <p>
-              {productGuide.volume}
-              <br />
-              {productGuide.composition}
-            </p>
-          </article>
-          <article>
-            <small>INGREDIENTS</small>
-            <strong>주요 성분</strong>
-            <p>{productGuide.ingredients}</p>
-          </article>
-          <article>
-            <small>HOW TO USE</small>
-            <strong>사용 방법</strong>
-            <p>{productGuide.usage}</p>
-          </article>
-        </div>
-        <div className="detail-guide-list">
-          <details open>
-            <summary>주의사항</summary>
-            <p>
-              피부에 이상이 있을 경우 사용을 중단하고 전문의와 상담해주세요. 직사광선을 피해 서늘한 곳에 보관하고,
-              영유아의 손이 닿지 않는 곳에 두세요.
-            </p>
-          </details>
-          <details>
-            <summary>배송 안내</summary>
-            <p>기본 배송비는 3,000원이며 50,000원 이상 구매 시 무료배송입니다. 평일 오후 2시 이전 주문은 순차 출고됩니다.</p>
-          </details>
-          <details>
-            <summary>교환 / 반품 안내</summary>
-            <p>상품 수령 후 7일 이내 미개봉 상품에 한해 접수 가능합니다. 단순 변심 반품 배송비는 고객 부담입니다.</p>
-          </details>
-          <details>
-            <summary>CS 문의</summary>
-            <p>평일 10:00-17:00 / shop@pibupibu.co.kr 로 문의를 남겨주시면 순차적으로 답변드립니다.</p>
-          </details>
-        </div>
         <div className="detail-placeholder">
           <strong>상세 이미지 삽입 영역</strong>
           <small>브랜드 스토리, 사용 장면, 성분표 이미지를 이 영역에 추가할 수 있습니다.</small>

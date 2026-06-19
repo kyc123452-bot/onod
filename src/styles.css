@@ -1052,100 +1052,9 @@ img {
   text-align: center;
 }
 
-.product-detail-shell span {
-  color: #777;
-  font-family: "Stint Ultra Expanded", Georgia, serif;
-  font-size: 11px;
-}
-
-.product-detail-shell h2 {
-  margin: 20px 0 14px;
-  font-size: 34px;
-}
-
-.product-detail-shell p {
-  max-width: 580px;
-  margin: 0 auto;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.8;
-  word-break: keep-all;
-}
-
-.detail-info-grid {
-  margin-top: 54px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid #111;
-  border-left: 1px solid #e5e5e5;
-  text-align: left;
-}
-
-.detail-info-grid article {
-  min-height: 238px;
-  padding: 26px 24px;
-  border-right: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.detail-info-grid small {
-  color: #777;
-  font-family: "Stint Ultra Expanded", Georgia, serif;
-  font-size: 10px;
-}
-
-.detail-info-grid strong {
-  display: block;
-  margin-top: 34px;
-  font-size: 18px;
-}
-
-.detail-info-grid p {
-  margin: 16px 0 0;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.75;
-}
-
-.detail-guide-list {
-  margin-top: 34px;
-  border-top: 1px solid #111;
-  text-align: left;
-}
-
-.detail-guide-list details {
-  border-bottom: 1px solid #e4e4e4;
-}
-
-.detail-guide-list summary {
-  min-height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.detail-guide-list summary::after {
-  content: "+";
-  font-weight: 500;
-}
-
-.detail-guide-list details[open] summary::after {
-  content: "-";
-}
-
-.detail-guide-list p {
-  max-width: 720px;
-  margin: 0 0 24px;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.8;
-}
-
 .detail-placeholder {
   min-height: 520px;
-  margin-top: 46px;
+  margin-top: 0;
   display: grid;
   place-content: center;
   gap: 12px;
@@ -2362,46 +2271,8 @@ img {
     padding-top: 52px;
   }
 
-  .product-detail-shell h2 {
-    font-size: 27px;
-  }
-
-  .product-detail-shell p {
-    font-size: 12px;
-  }
-
-  .detail-info-grid {
-    margin-top: 38px;
-    grid-template-columns: 1fr;
-  }
-
-  .detail-info-grid article {
-    min-height: 0;
-    padding: 22px 20px;
-  }
-
-  .detail-info-grid strong {
-    margin-top: 22px;
-    font-size: 17px;
-  }
-
-  .detail-info-grid p,
-  .detail-guide-list p {
-    font-size: 12px;
-  }
-
-  .detail-guide-list {
-    margin-top: 26px;
-  }
-
-  .detail-guide-list summary {
-    min-height: 52px;
-    font-size: 13px;
-  }
-
   .detail-placeholder {
     min-height: 380px;
-    margin-top: 34px;
     padding: 0 20px;
   }
 
