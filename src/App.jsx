@@ -178,6 +178,25 @@ const categories = [
 
 function Header({ isLoggedIn }) {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef(null);
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const searchResults = normalizedQuery
+    ? shopProducts
+        .filter((product) =>
+          [product.name, product.line, product.desc || ""].join(" ").toLowerCase().includes(normalizedQuery),
+        )
+        .slice(0, 6)
+    : shopProducts.slice(0, 4);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+
+    const timer = window.setTimeout(() => searchInputRef.current?.focus(), 80);
+
+    return () => window.clearTimeout(timer);
+  }, [searchOpen]);
 
   return (
     <header className="site-header">
@@ -196,7 +215,12 @@ function Header({ isLoggedIn }) {
           ))}
         </div>
         <div className="nav-actions" aria-label="빠른 작업">
-          <button className="icon-button" aria-label="검색">
+          <button
+            className="icon-button"
+            type="button"
+            aria-label={searchOpen ? "검색 닫기" : "검색"}
+            onClick={() => setSearchOpen((current) => !current)}
+          >
             <Search size={20} />
           </button>
           <a className="icon-button" href={isLoggedIn ? "#사용자" : "#로그인"} aria-label="계정">
@@ -207,6 +231,58 @@ function Header({ isLoggedIn }) {
           </a>
         </div>
       </nav>
+      <div className={`search-panel ${searchOpen ? "is-open" : ""}`} aria-hidden={!searchOpen}>
+        <div className="search-inner">
+          <label className="search-field">
+            <Search size={19} />
+            <input
+              ref={searchInputRef}
+              type="search"
+              value={searchQuery}
+              placeholder="제품명 또는 카테고리 검색"
+              onChange={(event) => setSearchQuery(event.target.value)}
+            />
+          </label>
+          <button
+            className="search-close"
+            type="button"
+            aria-label="검색 닫기"
+            onClick={() => {
+              setSearchOpen(false);
+              setSearchQuery("");
+            }}
+          >
+            <X size={20} />
+          </button>
+          <div className="search-results">
+            <span>{normalizedQuery ? "SEARCH RESULT" : "RECOMMEND"}</span>
+            {searchResults.length > 0 ? (
+              <div className="search-result-grid">
+                {searchResults.map((product) => (
+                  <a
+                    key={`${product.line}-${product.name}`}
+                    href={`#제품?category=${encodeURIComponent(product.line)}&product=${encodeURIComponent(product.name)}`}
+                    onClick={() => {
+                      setSearchOpen(false);
+                      setSearchQuery("");
+                    }}
+                  >
+                    <img src={productBathTeaSingle} alt="" />
+                    <div>
+                      <strong>{product.name}</strong>
+                      <small>
+                        {product.line} / {product.price}
+                      </small>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p className="search-empty">검색 결과가 없습니다.</p>
+            )}
+          </div>
+        </div>
+      </div>
       <div className={`mobile-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}>
         <div className="drawer-panel">
           <button className="icon-button drawer-close" onClick={() => setOpen(false)} aria-label="메뉴 닫기">
