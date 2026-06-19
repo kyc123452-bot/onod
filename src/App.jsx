@@ -438,7 +438,6 @@ function ProductPage({ initialCategory = "전체" }) {
 
 function ProductDetailPage({ productName }) {
   const selectedProduct = shopProducts.find((product) => product.name === productName) || shopProducts[0];
-  const relatedProducts = shopProducts.filter((product) => product.line === selectedProduct.line);
   const [quantity, setQuantity] = useState(1);
   const productPrice = parseWon(selectedProduct.price);
   const discountRate = parseWon(selectedProduct.discount);
@@ -524,20 +523,6 @@ function ProductDetailPage({ productName }) {
             <button type="button">관심상품</button>
           </div>
         </div>
-      </div>
-      <div className="product-list-head">
-        <h2>같은 카테고리 제품</h2>
-        <p>오노드 입욕과 사우나 라인업</p>
-      </div>
-      <div className="product-page-grid related-product-grid">
-        {relatedProducts.map((product) => (
-          <ProductCard
-            key={`${product.line}-${product.name}`}
-            product={product}
-            isSelected={product.name === selectedProduct.name}
-            detailHref={`#제품?category=${encodeURIComponent(product.line)}&product=${encodeURIComponent(product.name)}`}
-          />
-        ))}
       </div>
       <div className="detail-tabs" aria-label="상품 상세 메뉴">
         <button type="button">상세정보</button>
@@ -679,15 +664,15 @@ function NewsletterPage() {
 }
 
 function ProductCard({ product, isSelected = false, detailHref }) {
+  const cardHref =
+    detailHref || `#제품?category=${encodeURIComponent(product.line)}&product=${encodeURIComponent(product.name)}`;
+
   return (
     <article className={`product-card ${isSelected ? "is-selected" : ""}`}>
       <div className="product-image-wrap">
-        <img src={productBathTeaSingle} alt={product.name} />
-        {detailHref && (
-          <a className="product-select-overlay" href={detailHref}>
-            상품 보기
-          </a>
-        )}
+        <a className="product-image-link" href={cardHref} aria-label={`${product.name} 상품 상세 보기`}>
+          <img src={productBathTeaSingle} alt={product.name} />
+        </a>
         <button className="wish-button" aria-label={`${product.name} 찜하기`}>
           <Heart size={22} strokeWidth={2} />
         </button>
@@ -699,7 +684,9 @@ function ProductCard({ product, isSelected = false, detailHref }) {
           </div>
         )}
       </div>
-      <h3>{product.name}</h3>
+      <h3>
+        <a href={cardHref}>{product.name}</a>
+      </h3>
       <p>{product.line}</p>
       <div className="price-row">
         <strong>{product.price}</strong>
