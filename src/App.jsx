@@ -152,6 +152,50 @@ const shopProducts = [
   },
 ];
 
+const CART_STORAGE_KEY = "onod-cart";
+
+const getProductKey = (product) => `${product.line}::${product.name}`;
+
+const getProductGuide = (product) => {
+  if (product.line === "사우나") {
+    return {
+      scent: "따뜻한 열기 속에서도 무겁지 않게 퍼지는 우디 허브 노트",
+      volume: product.name.includes("캡") ? "프리 사이즈 / 울 혼방" : "100ml",
+      composition: product.name.includes("캡") ? "사우나 울 캡 1개" : "타월 미스트 1개",
+      ingredients: "정제수, 식물성 향료, 편백잎오일, 유칼립투스잎오일",
+      usage: "사우나 전후 타월이나 공간에 가볍게 사용하고, 피부 직접 분사는 피해주세요.",
+    };
+  }
+
+  if (product.line === "바디") {
+    return {
+      scent: "샤워 뒤 은은하게 남는 허브 시트러스와 깨끗한 머스크",
+      volume: "300ml",
+      composition: `${product.name} 1개`,
+      ingredients: "정제수, 글리세린, 식물 유래 세정 성분, 로즈마리잎오일",
+      usage: "젖은 피부에 덜어 부드럽게 마사지한 뒤 미온수로 충분히 씻어주세요.",
+    };
+  }
+
+  if (product.line === "헤어") {
+    return {
+      scent: "두피를 산뜻하게 정돈하는 민트 허브와 깨끗한 우디 노트",
+      volume: "400ml",
+      composition: `${product.name} 1개`,
+      ingredients: "정제수, 식물 유래 계면활성제, 로즈마리잎오일, 멘톨",
+      usage: "젖은 모발과 두피에 마사지하듯 사용한 뒤 충분히 헹궈주세요.",
+    };
+  }
+
+  return {
+    scent: "기소 숲의 히노키 향과 온천의 온기를 닮은 맑고 차분한 우디 노트",
+    volume: product.name.includes("세트") ? "40g x 3ea" : "40g / 1 tea bag",
+    composition: product.name.includes("세트") ? "배스 티 3개입 세트" : "배스 티 1개입",
+    ingredients: "히노키 우드 파우더, 천연 소금, 편백잎, 식물성 향료",
+    usage: "욕조에 따뜻한 물을 받은 뒤 티백을 넣고 3-5분간 우려낸 후 입욕하세요.",
+  };
+};
+
 const categories = [
   {
     title: "BATH",
@@ -180,15 +224,39 @@ function Header({ isLoggedIn }) {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchCategory, setSearchCategory] = useState("전체");
   const searchInputRef = useRef(null);
   const normalizedQuery = searchQuery.trim().toLowerCase();
+  const searchSource =
+    searchCategory === "전체" ? shopProducts : shopProducts.filter((product) => product.line === searchCategory);
   const searchResults = normalizedQuery
-    ? shopProducts
+    ? searchSource
         .filter((product) =>
           [product.name, product.line, product.desc || ""].join(" ").toLowerCase().includes(normalizedQuery),
         )
         .slice(0, 6)
-    : shopProducts.slice(0, 4);
+    : searchSource.slice(0, 4);
+
+  const renderHighlightedText = (text) => {
+    if (!normalizedQuery) return text;
+
+    const lowerText = text.toLowerCase();
+    const matchIndex = lowerText.indexOf(normalizedQuery);
+
+    if (matchIndex < 0) return text;
+
+    const before = text.slice(0, matchIndex);
+    const match = text.slice(matchIndex, matchIndex + normalizedQuery.length);
+    const after = text.slice(matchIndex + normalizedQuery.length);
+
+    return (
+      <>
+        {before}
+        <mark>{match}</mark>
+        {after}
+      </>
+    );
+  };
 
   useEffect(() => {
     if (!searchOpen) return;
@@ -254,6 +322,18 @@ function Header({ isLoggedIn }) {
           >
             <X size={20} />
           </button>
+          <div className="search-categories" aria-label="검색 카테고리">
+            {shopCategories.map((category) => (
+              <button
+                key={category}
+                className={searchCategory === category ? "is-active" : ""}
+                type="button"
+                onClick={() => setSearchCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
           <div className="search-results">
             <span>{normalizedQuery ? "SEARCH RESULT" : "RECOMMEND"}</span>
             {searchResults.length > 0 ? (
@@ -269,7 +349,7 @@ function Header({ isLoggedIn }) {
                   >
                     <img src={productBathTeaSingle} alt="" />
                     <div>
-                      <strong>{product.name}</strong>
+                      <strong>{renderHighlightedText(product.name)}</strong>
                       <small>
                         {product.line} / {product.price}
                       </small>
@@ -534,20 +614,33 @@ function ProductPage({ initialCategory = "전체" }) {
   );
 }
 
-function ProductDetailPage({ productName }) {
+function ProductDetailPage({ productName, onAddToCart }) {
   const selectedProduct = shopProducts.find((product) => product.name === productName) || shopProducts[0];
   const [quantity, setQuantity] = useState(1);
+  const [cartNotice, setCartNotice] = useState("");
   const productPrice = parseWon(selectedProduct.price);
   const discountRate = parseWon(selectedProduct.discount);
   const retailPrice = Math.round(productPrice / (1 - discountRate / 100) / 100) * 100;
   const totalPrice = productPrice * quantity;
+  const productGuide = getProductGuide(selectedProduct);
 
   useEffect(() => {
     setQuantity(1);
+    setCartNotice("");
   }, [selectedProduct.name]);
 
   const decreaseQuantity = () => setQuantity((current) => Math.max(1, current - 1));
   const increaseQuantity = () => setQuantity((current) => Math.min(20, current + 1));
+  const addSelectedProductToCart = () => {
+    onAddToCart?.(selectedProduct, quantity);
+    setCartNotice("장바구니에 담았습니다.");
+    window.setTimeout(() => setCartNotice(""), 1800);
+  };
+
+  const buySelectedProduct = () => {
+    onAddToCart?.(selectedProduct, quantity);
+    window.location.hash = "#장바구니";
+  };
 
   return (
     <section className="tab-page product-page product-detail-page" id="제품">
@@ -575,6 +668,12 @@ function ProductDetailPage({ productName }) {
             <span>{selectedProduct.discount}</span>
             <strong>{selectedProduct.price}</strong>
             <del>{formatWon(retailPrice)}</del>
+          </div>
+          <div className="purchase-trust" aria-label="구매 전 확인">
+            <span>5만원 이상 무료배송</span>
+            <span>평일 1-2일 출고</span>
+            <span>안심 결제</span>
+            <span>리뷰 4.8</span>
           </div>
           <dl className="purchase-meta">
             <div>
@@ -614,12 +713,15 @@ function ProductDetailPage({ productName }) {
             <strong>{formatWon(totalPrice)}</strong>
           </div>
           <div className="purchase-actions">
-            <button className="buy-now" type="button">
+            <button className="buy-now" type="button" onClick={buySelectedProduct}>
               바로 구매하기
             </button>
-            <button type="button">장바구니</button>
+            <button type="button" onClick={addSelectedProductToCart}>
+              장바구니
+            </button>
             <button type="button">관심상품</button>
           </div>
+          {cartNotice && <p className="cart-notice">{cartNotice}</p>}
         </div>
       </div>
       <div className="detail-tabs" aria-label="상품 상세 메뉴">
@@ -630,12 +732,71 @@ function ProductDetailPage({ productName }) {
       </div>
       <div className="product-detail-shell" id="product-detail">
         <span>DETAIL PAGE</span>
-        <h2>상세페이지 영역</h2>
-        <p>나중에 상세페이지 이미지, 사용 방법, 성분표, 브랜드 스토리 등을 넣을 수 있는 자리입니다.</p>
+        <h2>{selectedProduct.name}</h2>
+        <p>{productGuide.scent}</p>
+        <div className="detail-info-grid">
+          <article>
+            <small>SCENT</small>
+            <strong>향 설명</strong>
+            <p>{productGuide.scent}</p>
+          </article>
+          <article>
+            <small>VOLUME</small>
+            <strong>용량 / 구성</strong>
+            <p>
+              {productGuide.volume}
+              <br />
+              {productGuide.composition}
+            </p>
+          </article>
+          <article>
+            <small>INGREDIENTS</small>
+            <strong>주요 성분</strong>
+            <p>{productGuide.ingredients}</p>
+          </article>
+          <article>
+            <small>HOW TO USE</small>
+            <strong>사용 방법</strong>
+            <p>{productGuide.usage}</p>
+          </article>
+        </div>
+        <div className="detail-guide-list">
+          <details open>
+            <summary>주의사항</summary>
+            <p>
+              피부에 이상이 있을 경우 사용을 중단하고 전문의와 상담해주세요. 직사광선을 피해 서늘한 곳에 보관하고,
+              영유아의 손이 닿지 않는 곳에 두세요.
+            </p>
+          </details>
+          <details>
+            <summary>배송 안내</summary>
+            <p>기본 배송비는 3,000원이며 50,000원 이상 구매 시 무료배송입니다. 평일 오후 2시 이전 주문은 순차 출고됩니다.</p>
+          </details>
+          <details>
+            <summary>교환 / 반품 안내</summary>
+            <p>상품 수령 후 7일 이내 미개봉 상품에 한해 접수 가능합니다. 단순 변심 반품 배송비는 고객 부담입니다.</p>
+          </details>
+          <details>
+            <summary>CS 문의</summary>
+            <p>평일 10:00-17:00 / shop@pibupibu.co.kr 로 문의를 남겨주시면 순차적으로 답변드립니다.</p>
+          </details>
+        </div>
         <div className="detail-placeholder">
           <strong>상세 이미지 삽입 영역</strong>
-          <small>권장 폭 960-1200px / 세로형 상세페이지 콘텐츠</small>
+          <small>브랜드 스토리, 사용 장면, 성분표 이미지를 이 영역에 추가할 수 있습니다.</small>
         </div>
+      </div>
+      <div className="mobile-buy-bar" aria-label="모바일 구매">
+        <div>
+          <span>총 상품금액</span>
+          <strong>{formatWon(totalPrice)}</strong>
+        </div>
+        <button type="button" onClick={addSelectedProductToCart}>
+          장바구니
+        </button>
+        <button className="buy-now" type="button" onClick={buySelectedProduct}>
+          구매하기
+        </button>
       </div>
     </section>
   );
@@ -841,10 +1002,14 @@ function AccountPage({ onLogout }) {
   );
 }
 
-function CartPage({ isLoggedIn, onLogin }) {
+function CartPage({ isLoggedIn, onLogin, cartItems = [], onUpdateQuantity, onRemoveItem }) {
   if (!isLoggedIn) {
     return <LoginPage onLogin={onLogin} context="장바구니를 확인하려면 먼저 로그인해주세요." />;
   }
+
+  const subtotal = cartItems.reduce((sum, item) => sum + parseWon(item.price) * item.quantity, 0);
+  const shippingFee = subtotal >= 50000 || subtotal === 0 ? 0 : 3000;
+  const total = subtotal + shippingFee;
 
   return (
     <section className="tab-page cart-page" id="장바구니">
@@ -852,12 +1017,79 @@ function CartPage({ isLoggedIn, onLogin }) {
         <span>SHOPPING BAG</span>
         <h1>장바구니</h1>
       </div>
-      <div className="cart-empty">
-        <ShoppingBag size={34} strokeWidth={1.6} />
-        <h2>장바구니가 비어 있습니다.</h2>
-        <p>마음에 드는 오노드 제품을 담아 휴식의 루틴을 준비해보세요.</p>
-        <a href="#제품">제품 보러가기</a>
-      </div>
+      {cartItems.length === 0 ? (
+        <div className="cart-empty">
+          <ShoppingBag size={34} strokeWidth={1.6} />
+          <h2>장바구니가 비어 있습니다.</h2>
+          <p>마음에 드는 오노드 제품을 담아 휴식의 루틴을 준비해보세요.</p>
+          <a href="#제품">제품 보러가기</a>
+        </div>
+      ) : (
+        <div className="cart-layout">
+          <div className="cart-list">
+            {cartItems.map((item) => (
+              <article key={item.key} className="cart-item">
+                <a
+                  className="cart-item-image"
+                  href={`#제품?category=${encodeURIComponent(item.line)}&product=${encodeURIComponent(item.name)}`}
+                >
+                  <img src={productBathTeaSingle} alt={item.name} />
+                </a>
+                <div className="cart-item-info">
+                  <span>{item.line}</span>
+                  <h2>
+                    <a href={`#제품?category=${encodeURIComponent(item.line)}&product=${encodeURIComponent(item.name)}`}>
+                      {item.name}
+                    </a>
+                  </h2>
+                  <strong>{item.price}</strong>
+                </div>
+                <div className="quantity-control cart-quantity">
+                  <button
+                    type="button"
+                    onClick={() => onUpdateQuantity?.(item.key, Math.max(1, item.quantity - 1))}
+                    aria-label={`${item.name} 수량 줄이기`}
+                  >
+                    -
+                  </button>
+                  <output>{item.quantity}</output>
+                  <button
+                    type="button"
+                    onClick={() => onUpdateQuantity?.(item.key, Math.min(20, item.quantity + 1))}
+                    aria-label={`${item.name} 수량 늘리기`}
+                  >
+                    +
+                  </button>
+                </div>
+                <strong className="cart-line-total">{formatWon(parseWon(item.price) * item.quantity)}</strong>
+                <button className="cart-remove" type="button" onClick={() => onRemoveItem?.(item.key)}>
+                  삭제
+                </button>
+              </article>
+            ))}
+          </div>
+          <aside className="cart-summary" aria-label="주문 금액">
+            <h2>주문 예상 금액</h2>
+            <dl>
+              <div>
+                <dt>상품 금액</dt>
+                <dd>{formatWon(subtotal)}</dd>
+              </div>
+              <div>
+                <dt>배송비</dt>
+                <dd>{shippingFee === 0 ? "무료" : formatWon(shippingFee)}</dd>
+              </div>
+              <div>
+                <dt>총 결제 예정 금액</dt>
+                <dd>{formatWon(total)}</dd>
+              </div>
+            </dl>
+            <p>50,000원 이상 구매 시 무료배송이며, 평일 기준 1-2일 내 순차 출고됩니다.</p>
+            <button type="button">주문하기</button>
+            <a href="#제품">계속 쇼핑하기</a>
+          </aside>
+        </div>
+      )}
     </section>
   );
 }
@@ -1053,6 +1285,13 @@ function Footer() {
 export function App() {
   const [hash, setHash] = useState(() => decodeURIComponent(window.location.hash || "#top"));
   const [isLoggedIn, setIsLoggedIn] = useState(() => window.localStorage.getItem("onod-auth") === "true");
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      return JSON.parse(window.localStorage.getItem(CART_STORAGE_KEY) || "[]");
+    } catch {
+      return [];
+    }
+  });
   const routeHash = hash.split("?")[0];
   const routeParams = new URLSearchParams(hash.split("?")[1] || "");
   const selectedProductCategory = routeParams.get("category") || "전체";
@@ -1069,6 +1308,43 @@ export function App() {
     window.localStorage.removeItem("onod-auth");
     setIsLoggedIn(false);
     window.location.hash = "#로그인";
+  };
+
+  const persistCart = (nextCart) => {
+    setCartItems(nextCart);
+    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(nextCart));
+  };
+
+  const handleAddToCart = (product, quantity = 1) => {
+    const productKey = getProductKey(product);
+    const nextCart = [...cartItems];
+    const existingIndex = nextCart.findIndex((item) => item.key === productKey);
+
+    if (existingIndex >= 0) {
+      nextCart[existingIndex] = {
+        ...nextCart[existingIndex],
+        quantity: Math.min(20, nextCart[existingIndex].quantity + quantity),
+      };
+    } else {
+      nextCart.push({
+        key: productKey,
+        name: product.name,
+        line: product.line,
+        price: product.price,
+        discount: product.discount,
+        quantity,
+      });
+    }
+
+    persistCart(nextCart);
+  };
+
+  const handleUpdateCartQuantity = (key, quantity) => {
+    persistCart(cartItems.map((item) => (item.key === key ? { ...item, quantity: Math.max(1, quantity) } : item)));
+  };
+
+  const handleRemoveCartItem = (key) => {
+    persistCart(cartItems.filter((item) => item.key !== key));
   };
 
   useEffect(() => {
@@ -1124,7 +1400,7 @@ export function App() {
   const renderStandalonePage = () => {
     if (standalonePage === "#오노드") return <OnodPage />;
     if (standalonePage === "#제품" && selectedProductName) {
-      return <ProductDetailPage productName={selectedProductName} />;
+      return <ProductDetailPage productName={selectedProductName} onAddToCart={handleAddToCart} />;
     }
     if (standalonePage === "#제품") return <ProductPage initialCategory={selectedProductCategory} />;
     if (standalonePage === "#B2B 문의") return <B2BPage />;
@@ -1140,7 +1416,15 @@ export function App() {
       );
     }
     if (standalonePage === "#장바구니") {
-      return <CartPage isLoggedIn={isLoggedIn} onLogin={handleLogin} />;
+      return (
+        <CartPage
+          isLoggedIn={isLoggedIn}
+          onLogin={handleLogin}
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateCartQuantity}
+          onRemoveItem={handleRemoveCartItem}
+        />
+      );
     }
 
     return null;
