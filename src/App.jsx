@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Heart, Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
+import { Heart, Home, Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import heroOnodYukemuri from "./assets/hero-onod-yukemuri.png";
 import heroYukemuriMotion from "./assets/hero-yukemuri-motion.mp4";
 import productSet from "./assets/product-set.jpg";
@@ -285,23 +285,39 @@ function Header({ isLoggedIn }) {
       </div>
       <div className={`mobile-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}>
         <div className="drawer-panel">
-          <button className="icon-button drawer-close" onClick={() => setOpen(false)} aria-label="메뉴 닫기">
-            <X size={22} />
-          </button>
-          <a href="#top" onClick={() => setOpen(false)}>
-            홈
-          </a>
-          {navItems.map((item) => (
-            <a key={item} href={`#${item}`} onClick={() => setOpen(false)}>
-              {item}
+          <div className="drawer-head">
+            <div className="drawer-quick-actions" aria-label="빠른 이동">
+              <a className="drawer-quick-link" href="#top" onClick={() => setOpen(false)} aria-label="홈">
+                <Home size={18} />
+              </a>
+              <a
+                className="drawer-quick-link"
+                href={isLoggedIn ? "#사용자" : "#로그인"}
+                onClick={() => setOpen(false)}
+                aria-label={isLoggedIn ? "사용자" : "로그인"}
+              >
+                <UserRound size={18} />
+              </a>
+              <a className="drawer-quick-link" href="#장바구니" onClick={() => setOpen(false)} aria-label="장바구니">
+                <ShoppingBag size={18} />
+              </a>
+            </div>
+            <button className="icon-button drawer-close" onClick={() => setOpen(false)} aria-label="메뉴 닫기">
+              <X size={22} />
+            </button>
+          </div>
+          <div className="drawer-links">
+            {navItems.map((item) => (
+              <a key={item} href={`#${item}`} onClick={() => setOpen(false)}>
+                {item}
+              </a>
+            ))}
+          </div>
+          <div className="drawer-foot">
+            <a href={isLoggedIn ? "#사용자" : "#로그인"} onClick={() => setOpen(false)}>
+              {isLoggedIn ? "내 계정 보기" : "로그인하고 쇼핑하기"}
             </a>
-          ))}
-          <a href={isLoggedIn ? "#사용자" : "#로그인"} onClick={() => setOpen(false)}>
-            {isLoggedIn ? "사용자" : "로그인"}
-          </a>
-          <a href="#장바구니" onClick={() => setOpen(false)}>
-            장바구니
-          </a>
+          </div>
         </div>
       </div>
     </header>
