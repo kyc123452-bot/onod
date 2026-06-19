@@ -80,6 +80,10 @@ const categoryProductMap = {
   SAUNA: "사우나",
 };
 
+const parseWon = (value) => Number(value.replace(/[^\d]/g, ""));
+
+const formatWon = (value) => `${value.toLocaleString("ko-KR")}원`;
+
 const shopProducts = [
   ...products,
   {
@@ -384,14 +388,32 @@ function OnodPage() {
 function ProductPage({ initialCategory = "전체" }) {
   const normalizedInitialCategory = shopCategories.includes(initialCategory) ? initialCategory : "전체";
   const [selectedCategory, setSelectedCategory] = useState(normalizedInitialCategory);
+  const [selectedProductName, setSelectedProductName] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const visibleProducts =
     selectedCategory === "전체"
       ? shopProducts
       : shopProducts.filter((product) => product.line === selectedCategory);
+  const selectedProduct =
+    visibleProducts.find((product) => product.name === selectedProductName) || visibleProducts[0] || shopProducts[0];
+  const productPrice = parseWon(selectedProduct.price);
+  const discountRate = parseWon(selectedProduct.discount);
+  const retailPrice = Math.round(productPrice / (1 - discountRate / 100) / 100) * 100;
+  const totalPrice = productPrice * quantity;
 
   useEffect(() => {
     setSelectedCategory(normalizedInitialCategory);
   }, [normalizedInitialCategory]);
+
+  useEffect(() => {
+    if (!visibleProducts.some((product) => product.name === selectedProductName)) {
+      setSelectedProductName(visibleProducts[0]?.name || "");
+      setQuantity(1);
+    }
+  }, [selectedProductName, visibleProducts]);
+
+  const decreaseQuantity = () => setQuantity((current) => Math.max(1, current - 1));
+  const increaseQuantity = () => setQuantity((current) => Math.min(20, current + 1));
 
   return (
     <section className="tab-page product-page" id="제품">
@@ -407,7 +429,10 @@ function ProductPage({ initialCategory = "전체" }) {
               key={category}
               className={selectedCategory === category ? "is-active" : ""}
               type="button"
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => {
+                setSelectedCategory(category);
+                setQuantity(1);
+              }}
             >
               {category}
             </button>
@@ -417,10 +442,105 @@ function ProductPage({ initialCategory = "전체" }) {
           {selectedCategory} <span>{visibleProducts.length}</span>
         </p>
       </div>
+      <div className="product-purchase">
+        <div className="purchase-gallery">
+          <div className="purchase-image">
+            <img src={productBathTeaSingle} alt={selectedProduct.name} />
+          </div>
+          <div className="purchase-thumbs" aria-label="상품 이미지">
+            {[1, 2, 3].map((item) => (
+              <button key={item} className={item === 1 ? "is-active" : ""} type="button">
+                <img src={productBathTeaSingle} alt="" />
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="purchase-info">
+          <div className="purchase-path">ONOD / {selectedProduct.line}</div>
+          <h2>{selectedProduct.name}</h2>
+          <p>{selectedProduct.desc || "오노드의 휴식 리추얼을 위한 제품입니다."}</p>
+          <div className="purchase-price">
+            <span>{selectedProduct.discount}</span>
+            <strong>{selectedProduct.price}</strong>
+            <del>{formatWon(retailPrice)}</del>
+          </div>
+          <dl className="purchase-meta">
+            <div>
+              <dt>배송</dt>
+              <dd>국내배송 / 3,000원 (50,000원 이상 무료)</dd>
+            </div>
+            <div>
+              <dt>출고</dt>
+              <dd>평일 기준 1-2일 내 순차 출고</dd>
+            </div>
+            <div>
+              <dt>적립</dt>
+              <dd>구매금액의 1% 적립</dd>
+            </div>
+          </dl>
+          <label className="purchase-option">
+            옵션
+            <select key={selectedProduct.name} defaultValue={`${selectedProduct.name} / 기본`}>
+              <option>{selectedProduct.name} / 기본</option>
+              <option>{selectedProduct.name} / 선물 포장 추가</option>
+            </select>
+          </label>
+          <div className="quantity-row">
+            <span>수량</span>
+            <div className="quantity-control">
+              <button type="button" onClick={decreaseQuantity} aria-label="수량 줄이기">
+                -
+              </button>
+              <output>{quantity}</output>
+              <button type="button" onClick={increaseQuantity} aria-label="수량 늘리기">
+                +
+              </button>
+            </div>
+          </div>
+          <div className="purchase-total">
+            <span>총 상품금액</span>
+            <strong>{formatWon(totalPrice)}</strong>
+          </div>
+          <div className="purchase-actions">
+            <button className="buy-now" type="button">
+              바로 구매하기
+            </button>
+            <button type="button">장바구니</button>
+            <button type="button">관심상품</button>
+          </div>
+        </div>
+      </div>
+      <div className="product-list-head">
+        <h2>같은 카테고리 제품</h2>
+        <p>오노드 입욕과 사우나 라인업</p>
+      </div>
       <div className="product-page-grid">
         {visibleProducts.map((product) => (
-          <ProductCard key={`${product.line}-${product.name}`} product={product} />
+          <ProductCard
+            key={`${product.line}-${product.name}`}
+            product={product}
+            isSelected={product.name === selectedProduct.name}
+            onSelect={() => {
+              setSelectedProductName(product.name);
+              setQuantity(1);
+            }}
+          />
         ))}
+      </div>
+      <div className="detail-tabs" aria-label="상품 상세 메뉴">
+        <a href="#product-detail">상세정보</a>
+        <a href="#product-guide">구매안내</a>
+        <a href="#product-review">리뷰</a>
+        <a href="#product-qna">문의</a>
+      </div>
+      <div className="product-detail-shell" id="product-detail">
+        <span>DETAIL PAGE</span>
+        <h2>상세페이지 영역</h2>
+        <p>나중에 상세페이지 이미지, 사용 방법, 성분표, 브랜드 스토리 등을 넣을 수 있는 자리입니다.</p>
+        <div className="detail-placeholder">
+          <strong>상세 이미지 삽입 영역</strong>
+          <small>권장 폭 960-1200px / 세로형 상세페이지 콘텐츠</small>
+        </div>
       </div>
     </section>
   );
@@ -546,11 +666,16 @@ function NewsletterPage() {
   );
 }
 
-function ProductCard({ product }) {
+function ProductCard({ product, isSelected = false, onSelect }) {
   return (
-    <article className="product-card">
+    <article className={`product-card ${isSelected ? "is-selected" : ""}`}>
       <div className="product-image-wrap">
         <img src={productBathTeaSingle} alt={product.name} />
+        {onSelect && (
+          <button className="product-select-overlay" type="button" onClick={onSelect}>
+            상품 보기
+          </button>
+        )}
         <button className="wish-button" aria-label={`${product.name} 찜하기`}>
           <Heart size={22} strokeWidth={2} />
         </button>
