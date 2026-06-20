@@ -854,23 +854,6 @@ img {
   font-size: 13px;
 }
 
-.purchase-trust {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin: 20px 0 22px;
-}
-
-.purchase-trust span {
-  min-height: 38px;
-  display: grid;
-  place-items: center;
-  border: 1px solid #ececec;
-  background: #fafafa;
-  color: #555;
-  font-size: 12px;
-}
-
 .purchase-meta {
   display: grid;
   gap: 0;

@@ -628,12 +628,6 @@ function ProductDetailPage({ productName, onAddToCart }) {
             <strong>{selectedProduct.price}</strong>
             <del>{formatWon(retailPrice)}</del>
           </div>
-          <div className="purchase-trust" aria-label="구매 전 확인">
-            <span>5만원 이상 무료배송</span>
-            <span>평일 1-2일 출고</span>
-            <span>안심 결제</span>
-            <span>리뷰 4.8</span>
-          </div>
           <dl className="purchase-meta">
             <div>
               <dt>배송</dt>
