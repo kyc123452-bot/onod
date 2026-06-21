@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Stint+Ultra+Expanded&display=swap");
 
 @font-face {
-  font-family: "PibuPretendard";
+  font-family: "OnodPretendard";
   src: url("./assets/Pretendard-Medium-subset.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: "PibuPretendard";
+  font-family: "OnodPretendard";
   src: url("./assets/Pretendard-SemiBold-subset.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
@@ -25,7 +25,7 @@
   --footer: #282828;
   --danger: #cf0c0c;
   --max: 1200px;
-  font-family: "ITC Avant Garde Gothic Pro", "PibuPretendard", "Helvetica Neue", Arial, sans-serif;
+  font-family: "ITC Avant Garde Gothic Pro", "OnodPretendard", "Helvetica Neue", Arial, sans-serif;
   color: var(--ink);
   background: #fff;
 }

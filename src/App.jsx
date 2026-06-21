@@ -706,7 +706,7 @@ function ProductDetailPage({ productName, onAddToCart }) {
           </details>
           <details>
             <summary>CS 문의</summary>
-            <p>평일 10:00-17:00 / shop@pibupibu.co.kr 로 문의를 남겨주시면 순차적으로 답변드립니다.</p>
+            <p>평일 10:00-17:00 / shop@onod.kr 로 문의를 남겨주시면 순차적으로 답변드립니다.</p>
           </details>
         </div>
       </div>
@@ -1200,7 +1200,7 @@ function Footer() {
       <p>
         Copyright ©ONOD. All Rights Reserved.
         <br />
-        꼬르메꾸시주식회사 | 대표 송한나 | 02-2205-3568 | shop@pibupibu.co.kr
+        온리브 | 대표 권영찬 | 010-3575-2986 | shop@onod.kr
       </p>
     </footer>
   );
