@@ -677,6 +677,39 @@ function ProductDetailPage({ productName, onAddToCart }) {
           {cartNotice && <p className="cart-notice">{cartNotice}</p>}
         </div>
       </div>
+      <div className="detail-tabs" aria-label="상품 상세 메뉴">
+        <button type="button">상세정보</button>
+        <button type="button">구매안내</button>
+        <button type="button">리뷰</button>
+        <button type="button">문의</button>
+      </div>
+      <div className="product-detail-shell" id="product-detail">
+        <div className="detail-placeholder">
+          <strong>상세페이지 삽입 영역</strong>
+          <small>제품별 상세페이지 이미지와 콘텐츠를 이 위치에 추가할 수 있습니다.</small>
+        </div>
+        <div className="detail-guide-list">
+          <details open>
+            <summary>주의사항</summary>
+            <p>
+              피부에 이상이 있을 경우 사용을 중단하고 전문의와 상담해주세요. 직사광선을 피해 서늘한 곳에 보관하고,
+              영유아의 손이 닿지 않는 곳에 두세요.
+            </p>
+          </details>
+          <details>
+            <summary>배송 안내</summary>
+            <p>기본 배송비는 3,000원이며 50,000원 이상 구매 시 무료배송입니다. 평일 오후 2시 이전 주문은 순차 출고됩니다.</p>
+          </details>
+          <details>
+            <summary>교환 / 반품 안내</summary>
+            <p>상품 수령 후 7일 이내 미개봉 상품에 한해 접수 가능합니다. 단순 변심 반품 배송비는 고객 부담입니다.</p>
+          </details>
+          <details>
+            <summary>CS 문의</summary>
+            <p>평일 10:00-17:00 / shop@pibupibu.co.kr 로 문의를 남겨주시면 순차적으로 답변드립니다.</p>
+          </details>
+        </div>
+      </div>
       <div className="mobile-buy-bar" aria-label="모바일 구매">
         <div>
           <span>총 상품금액</span>
