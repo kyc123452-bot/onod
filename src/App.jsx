@@ -1263,7 +1263,6 @@ function HomeNewsletter() {
   return (
     <section className="section home-newsletter" id="ONOD LETTER">
       <div className="home-newsletter-head">
-        <span>ONOD LETTER</span>
         <div>
           <h2>휴식의 감각을 짧게 기록합니다.</h2>
           <p>입욕과 사우나, 물과 향에 관한 오노드의 뉴스레터를 홈에서도 가볍게 만나보세요.</p>
@@ -1273,9 +1272,6 @@ function HomeNewsletter() {
       <div className="home-letter-grid">
         {featuredLetters.map((letter) => (
           <a key={letter.number} href={`#뉴스레터?letter=${letter.number}`}>
-            <small>
-              {letter.number} / {letter.category}
-            </small>
             <h3>{letter.title}</h3>
             <p>{letter.body}</p>
             <span>읽어보기</span>

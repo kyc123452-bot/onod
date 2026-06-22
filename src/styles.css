@@ -1762,19 +1762,11 @@ img {
 
 .home-newsletter-head {
   display: grid;
-  grid-template-columns: 160px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 34px;
   align-items: start;
   padding-top: 24px;
   border-top: 1px solid #111;
-}
-
-.home-newsletter-head > span,
-.home-letter-grid small {
-  color: #777;
-  font-family: "Stint Ultra Expanded", Georgia, serif;
-  font-size: 11px;
-  line-height: 1;
 }
 
 .home-newsletter-head h2 {
@@ -1821,7 +1813,7 @@ img {
 }
 
 .home-letter-grid h3 {
-  margin: 48px 0 16px;
+  margin: 0 0 16px;
   font-size: 22px;
   line-height: 1.35;
 }
@@ -2855,7 +2847,7 @@ img {
   }
 
   .home-letter-grid h3 {
-    margin: 34px 0 12px;
+    margin: 0 0 12px;
     font-size: 20px;
   }
 
