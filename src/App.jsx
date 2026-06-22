@@ -1431,7 +1431,7 @@ function HomeNewsletter() {
       <div className="home-newsletter-head">
         <div>
           <h2>휴식의 감각을 짧게 기록합니다.</h2>
-          <p>입욕과 사우나, 물과 향에 관한 오노드의 뉴스레터를 홈에서도 가볍게 만나보세요.</p>
+          <p>입욕과 사우나, 물과 향에 관한 오노드의 뉴스레터를 만나보세요.</p>
         </div>
         <a href="#뉴스레터">뉴스레터 보기</a>
       </div>
