@@ -789,43 +789,76 @@ function B2BPage() {
   );
 }
 
+const newsletterLetters = [
+  {
+    number: "01",
+    category: "입욕",
+    date: "2026.06.17",
+    title: "입욕의 시작",
+    body: "따뜻한 물에 향이 퍼지는 첫 순간, 하루의 속도는 조금씩 낮아집니다.",
+    intro:
+      "하루를 닫는 가장 작은 리추얼은 물의 온도를 고르는 일에서 시작됩니다. 오늘의 뉴스레터는 입욕이 몸과 마음의 속도를 어떻게 늦추는지에 관한 기록입니다.",
+    paragraphs: [
+      "따뜻한 물에 티백을 넣으면 향은 빠르게 드러나지 않습니다. 아주 천천히, 물의 표면을 따라 번지고 욕실의 공기 안으로 스며듭니다. 그 느린 속도는 입욕이 가진 가장 중요한 감각입니다.",
+      "오노드는 입욕을 단순한 세정의 과정으로 보지 않습니다. 씻는 시간과 쉬는 시간 사이에 놓인 작은 전환점으로 바라봅니다. 그 안에서 사람은 오늘의 긴장을 조금 내려놓고, 내일을 받아들일 만큼의 여백을 만듭니다.",
+      "배스 티는 손쉽게 사용할 수 있지만, 그 경험은 가볍지 않습니다. 물의 온기와 히노키의 잔향이 겹쳐지며 욕조 안의 시간을 차분하게 정돈합니다.",
+    ],
+    closing: "이번 주에는 물의 온도를 조금 낮추고, 머무는 시간을 조금 길게 가져보세요.",
+  },
+  {
+    number: "02",
+    category: "사우나",
+    date: "2026.06.10",
+    title: "사우나의 온도",
+    body: "열이 몸을 감싸고 숨이 느려질 때, 휴식은 더 선명한 감각이 됩니다.",
+    intro:
+      "사우나에서 중요한 것은 높은 온도만이 아닙니다. 열이 머무는 방식, 숨이 느려지는 순간, 그리고 다시 식어가는 몸의 리듬입니다.",
+    paragraphs: [
+      "사우나의 열은 빠르게 몸을 압도하지만, 좋은 휴식은 그 안에서 천천히 찾아옵니다. 땀이 맺히고 호흡이 길어질수록 몸은 바깥의 소음에서 멀어집니다.",
+      "오노드는 사우나를 하나의 공간 경험으로 생각합니다. 수건, 향, 물, 열이 각각 따로 존재하는 것이 아니라 하나의 순서 안에서 이어집니다.",
+      "너무 강한 향보다 은은하게 남는 향이 사우나에는 더 잘 어울립니다. 열과 함께 퍼지고, 식어가는 순간에도 조용히 남는 향이 휴식의 마무리를 돕습니다.",
+    ],
+    closing: "사우나 후에는 차가운 물보다 먼저 천천히 숨을 고르는 시간을 가져보세요.",
+  },
+  {
+    number: "03",
+    category: "리추얼",
+    date: "2026.06.03",
+    title: "향이 남는 방식",
+    body: "강하게 드러나는 향보다 오래 머무는 잔향을 기준으로 제품을 바라봅니다.",
+    intro:
+      "향은 제품을 설명하는 가장 빠른 언어이지만, 오노드가 중요하게 보는 것은 첫인상보다 마지막에 남는 감각입니다.",
+    paragraphs: [
+      "강한 향은 쉽게 기억되지만 오래 머물기 어렵습니다. 반대로 은은한 향은 처음에는 조용하지만, 시간이 지나며 공간과 피부에 더 자연스럽게 남습니다.",
+      "입욕과 사우나에서의 향은 특히 조심스럽게 다뤄져야 합니다. 뜨거운 물과 열은 향을 더 크게 만들기 때문에, 처음부터 과한 향은 쉽게 피로해질 수 있습니다.",
+      "오노드의 리추얼은 향을 앞으로 밀어내기보다 사용자의 시간 뒤에 조용히 놓아두는 방식에 가깝습니다.",
+    ],
+    closing: "향을 고를 때는 첫 향보다 10분 뒤의 잔향을 기준으로 생각해보세요.",
+  },
+  {
+    number: "04",
+    category: "입욕",
+    date: "2026.05.27",
+    title: "하루를 닫는 물의 감각",
+    body: "몸을 씻는 일과 마음을 내려놓는 일 사이의 작은 간격을 기록합니다.",
+    intro:
+      "매일의 끝에는 반복되는 동작이 있습니다. 물을 틀고, 손으로 온도를 확인하고, 오늘의 피로를 천천히 씻어내는 일입니다.",
+    paragraphs: [
+      "하루를 닫는 물의 감각은 거창하지 않습니다. 하지만 반복되는 작은 감각은 몸에게 지금은 멈춰도 된다는 신호를 보냅니다.",
+      "입욕은 그 신호를 조금 더 분명하게 만드는 방식입니다. 욕조에 몸을 담그는 일은 시간을 잠시 멈추고 나에게 돌아오는 일에 가깝습니다.",
+      "좋은 리추얼은 많은 준비를 요구하지 않습니다. 조용한 물, 알맞은 온도, 그리고 오래 남지 않아도 충분한 향이면 됩니다.",
+    ],
+    closing: "오늘 밤에는 씻는 시간을 조금 천천히 시작해보세요.",
+  },
+];
+
 function NewsletterPage() {
   const letterCategories = ["전체", "입욕", "사우나", "리추얼"];
   const [selectedLetterCategory, setSelectedLetterCategory] = useState("전체");
-  const letters = [
-    {
-      number: "01",
-      category: "입욕",
-      date: "2026.06.17",
-      title: "입욕의 시작",
-      body: "따뜻한 물에 향이 퍼지는 첫 순간, 하루의 속도는 조금씩 낮아집니다.",
-    },
-    {
-      number: "02",
-      category: "사우나",
-      date: "2026.06.10",
-      title: "사우나의 온도",
-      body: "열이 몸을 감싸고 숨이 느려질 때, 휴식은 더 선명한 감각이 됩니다.",
-    },
-    {
-      number: "03",
-      category: "리추얼",
-      date: "2026.06.03",
-      title: "향이 남는 방식",
-      body: "강하게 드러나는 향보다 오래 머무는 잔향을 기준으로 제품을 바라봅니다.",
-    },
-    {
-      number: "04",
-      category: "입욕",
-      date: "2026.05.27",
-      title: "하루를 닫는 물의 감각",
-      body: "몸을 씻는 일과 마음을 내려놓는 일 사이의 작은 간격을 기록합니다.",
-    },
-  ];
   const visibleLetters =
     selectedLetterCategory === "전체"
-      ? letters
-      : letters.filter((letter) => letter.category === selectedLetterCategory);
+      ? newsletterLetters
+      : newsletterLetters.filter((letter) => letter.category === selectedLetterCategory);
 
   return (
     <section className="tab-page newsletter-page" id="뉴스레터">
@@ -862,11 +895,46 @@ function NewsletterPage() {
               <h2>{letter.title}</h2>
             </div>
             <p>{letter.body}</p>
-            <a href="#뉴스레터">읽어보기</a>
+            <a href={`#뉴스레터?letter=${letter.number}`}>읽어보기</a>
           </article>
         ))}
       </div>
     </section>
+  );
+}
+
+function NewsletterDetailPage({ letterNumber }) {
+  const letter = newsletterLetters.find((item) => item.number === letterNumber) || newsletterLetters[0];
+
+  return (
+    <article className="tab-page newsletter-detail-page" id="뉴스레터">
+      <div className="newsletter-detail">
+        <a className="letter-back" href="#뉴스레터">
+          목록으로
+        </a>
+        <div className="letter-meta">
+          <span>{letter.number}</span>
+          <small>
+            {letter.category} / {letter.date}
+          </small>
+        </div>
+        <h1>{letter.title}</h1>
+        <p className="letter-intro">{letter.intro}</p>
+        <div className="letter-body">
+          {letter.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+        <blockquote>{letter.closing}</blockquote>
+        <nav className="letter-nav" aria-label="뉴스레터 이동">
+          {newsletterLetters.map((item) => (
+            <a key={item.number} className={item.number === letter.number ? "is-active" : ""} href={`#뉴스레터?letter=${item.number}`}>
+              {item.number}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </article>
   );
 }
 
@@ -1244,6 +1312,7 @@ export function App() {
   const routeParams = new URLSearchParams(hash.split("?")[1] || "");
   const selectedProductCategory = routeParams.get("category") || "전체";
   const selectedProductName = routeParams.get("product") || "";
+  const selectedLetterNumber = routeParams.get("letter") || "";
   const standaloneRoutes = ["#오노드", "#제품", "#B2B 문의", "#뉴스레터", "#로그인", "#사용자", "#마이쇼핑", "#장바구니"];
   const standalonePage = standaloneRoutes.includes(routeHash) ? routeHash : null;
 
@@ -1352,6 +1421,9 @@ export function App() {
     }
     if (standalonePage === "#제품") return <ProductPage initialCategory={selectedProductCategory} />;
     if (standalonePage === "#B2B 문의") return <B2BPage />;
+    if (standalonePage === "#뉴스레터" && selectedLetterNumber) {
+      return <NewsletterDetailPage letterNumber={selectedLetterNumber} />;
+    }
     if (standalonePage === "#뉴스레터") return <NewsletterPage />;
     if (standalonePage === "#로그인") {
       return isLoggedIn ? <AccountPage onLogout={handleLogout} /> : <LoginPage onLogin={handleLogin} />;

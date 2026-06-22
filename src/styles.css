@@ -1598,6 +1598,106 @@ img {
   white-space: nowrap;
 }
 
+.newsletter-detail {
+  max-width: 860px;
+  margin: 0 auto;
+  padding-top: 22px;
+  border-top: 1px solid #111;
+}
+
+.letter-back {
+  display: inline-flex;
+  margin-bottom: 72px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: #555;
+  font-size: 13px;
+}
+
+.letter-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  color: #777;
+  font-family: "Stint Ultra Expanded", Georgia, serif;
+  font-size: 11px;
+}
+
+.letter-meta span,
+.letter-meta small {
+  font: inherit;
+}
+
+.newsletter-detail h1 {
+  max-width: 700px;
+  margin: 38px 0 42px;
+  font-size: 56px;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.letter-intro {
+  max-width: 650px;
+  margin: 0 0 88px auto;
+  font-size: 17px;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.letter-body {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 34px;
+  border-top: 1px solid #111;
+  padding-top: 56px;
+}
+
+.letter-body p {
+  margin: 0;
+  color: #222;
+  font-size: 15px;
+  line-height: 2;
+  word-break: keep-all;
+}
+
+.newsletter-detail blockquote {
+  max-width: 720px;
+  margin: 72px auto 0;
+  padding: 34px 0 0;
+  border-top: 1px solid #111;
+  color: #111;
+  font-size: 26px;
+  line-height: 1.45;
+  font-weight: 700;
+  word-break: keep-all;
+}
+
+.letter-nav {
+  max-width: 720px;
+  margin: 70px auto 0;
+  display: flex;
+  gap: 10px;
+}
+
+.letter-nav a {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #dcdcdc;
+  color: #555;
+  font-family: "Stint Ultra Expanded", Georgia, serif;
+  font-size: 11px;
+}
+
+.letter-nav a.is-active {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
 .section {
   max-width: var(--max);
   margin: 0 auto;
@@ -2537,6 +2637,52 @@ img {
   .letter-list p,
   .letter-list a {
     font-size: 12px;
+  }
+
+  .newsletter-detail {
+    padding-top: 16px;
+  }
+
+  .letter-back {
+    margin-bottom: 46px;
+    font-size: 12px;
+  }
+
+  .letter-meta {
+    display: grid;
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  .newsletter-detail h1 {
+    margin: 30px 0 28px;
+    font-size: 34px;
+  }
+
+  .letter-intro {
+    margin-bottom: 54px;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .letter-body {
+    gap: 26px;
+    padding-top: 38px;
+  }
+
+  .letter-body p {
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .newsletter-detail blockquote {
+    margin-top: 52px;
+    padding-top: 28px;
+    font-size: 22px;
+  }
+
+  .letter-nav {
+    margin-top: 48px;
   }
 
   .section {
