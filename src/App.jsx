@@ -9,6 +9,7 @@ import productShampoo from "./assets/product-shampoo.jpg";
 import productBodywash from "./assets/product-bodywash.png";
 import categoryHair from "./assets/category-hair.jpg";
 import categoryBody from "./assets/category-body.jpg";
+import categoryBodyOnod from "./assets/category-body-onod.png";
 import categoryBathOnsen from "./assets/category-bath-onsen.png";
 import categorySaunaStones from "./assets/category-sauna-stones.png";
 import therapyBg from "./assets/therapy-bg.jpg";
@@ -188,7 +189,7 @@ const categories = [
   {
     title: "BODY",
     body: "샤워 후 피부 당김 없이 촉촉하게 남는 바디케어",
-    image: categoryBody,
+    image: categoryBodyOnod,
   },
   {
     title: "HAIR",
