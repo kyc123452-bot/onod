@@ -160,8 +160,23 @@ const homeProducts = [
 ].filter(Boolean);
 
 const CART_STORAGE_KEY = "onod-cart";
+const READY_PRODUCT_NAME = "유케무리 기소 히노키 배스 티";
 
 const getProductKey = (product) => `${product.line}::${product.name}`;
+
+function ProductVisual({ product, productName, alt = "" }) {
+  const name = product?.name || productName || alt;
+
+  if (name === READY_PRODUCT_NAME) {
+    return <img src={productBathTeaSingle} alt={alt || name} />;
+  }
+
+  return (
+    <div className="product-ready-image" role="img" aria-label={`${name} 이미지 준비중`}>
+      <span>준비중</span>
+    </div>
+  );
+}
 
 const categories = [
   {
@@ -314,7 +329,7 @@ function Header({ isLoggedIn }) {
                       setSearchQuery("");
                     }}
                   >
-                    <img src={productBathTeaSingle} alt="" />
+                    <ProductVisual product={product} alt="" />
                     <div>
                       <strong>{renderHighlightedText(product.name)}</strong>
                       <small>
@@ -613,12 +628,12 @@ function ProductDetailPage({ productName, onAddToCart }) {
       <div className="product-purchase">
         <div className="purchase-gallery">
           <div className="purchase-image">
-            <img src={productBathTeaSingle} alt={selectedProduct.name} />
+            <ProductVisual product={selectedProduct} alt={selectedProduct.name} />
           </div>
           <div className="purchase-thumbs" aria-label="상품 이미지">
             {[1, 2, 3].map((item) => (
               <button key={item} className={item === 1 ? "is-active" : ""} type="button">
-                <img src={productBathTeaSingle} alt="" />
+                <ProductVisual product={selectedProduct} alt="" />
               </button>
             ))}
           </div>
@@ -964,7 +979,7 @@ function CartPage({ isLoggedIn, onLogin, cartItems = [], onUpdateQuantity, onRem
                   className="cart-item-image"
                   href={`#제품?category=${encodeURIComponent(item.line)}&product=${encodeURIComponent(item.name)}`}
                 >
-                  <img src={productBathTeaSingle} alt={item.name} />
+                  <ProductVisual productName={item.name} alt={item.name} />
                 </a>
                 <div className="cart-item-info">
                   <span>{item.line}</span>
@@ -1033,7 +1048,7 @@ function ProductCard({ product, isSelected = false, detailHref }) {
     <article className={`product-card ${isSelected ? "is-selected" : ""}`}>
       <div className="product-image-wrap">
         <a className="product-image-link" href={cardHref} aria-label={`${product.name} 상품 상세 보기`}>
-          <img src={productBathTeaSingle} alt={product.name} />
+          <ProductVisual product={product} alt={product.name} />
         </a>
         <button className="wish-button" aria-label={`${product.name} 찜하기`}>
           <Heart size={22} strokeWidth={2} />
