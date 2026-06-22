@@ -16,6 +16,13 @@ import categorySaunaStones from "./assets/category-sauna-stones.png";
 import therapySaunaRitual from "./assets/therapy-sauna-ritual.png";
 import onodLogo from "./assets/onod-logo.svg";
 import onodSaunaSteam from "./assets/onod-sauna-steam.png";
+import yukemuriDetail01 from "./assets/yukemuri-detail-01.png";
+import yukemuriDetail02 from "./assets/yukemuri-detail-02.png";
+import yukemuriDetail03 from "./assets/yukemuri-detail-03.png";
+import yukemuriDetail04 from "./assets/yukemuri-detail-04.png";
+import yukemuriDetail05 from "./assets/yukemuri-detail-05.png";
+import yukemuriDetail06 from "./assets/yukemuri-detail-06.png";
+import yukemuriDetail07 from "./assets/yukemuri-detail-07.png";
 
 const navItems = ["오노드", "제품", "B2B 문의", "뉴스레터"];
 
@@ -163,6 +170,15 @@ const homeProducts = [
 
 const CART_STORAGE_KEY = "onod-cart";
 const READY_PRODUCT_NAME = "유케무리 기소 히노키 배스 티";
+const yukemuriDetailImages = [
+  yukemuriDetail01,
+  yukemuriDetail02,
+  yukemuriDetail03,
+  yukemuriDetail04,
+  yukemuriDetail05,
+  yukemuriDetail06,
+  yukemuriDetail07,
+];
 
 const getProductKey = (product) => `${product.line}::${product.name}`;
 
@@ -606,6 +622,7 @@ function ProductDetailPage({ productName, onAddToCart }) {
   const discountRate = parseWon(selectedProduct.discount);
   const retailPrice = Math.round(productPrice / (1 - discountRate / 100) / 100) * 100;
   const totalPrice = productPrice * quantity;
+  const hasYukemuriDetail = selectedProduct.name === READY_PRODUCT_NAME;
 
   useEffect(() => {
     setQuantity(1);
@@ -708,10 +725,18 @@ function ProductDetailPage({ productName, onAddToCart }) {
         <button type="button">문의</button>
       </div>
       <div className="product-detail-shell" id="product-detail">
-        <div className="detail-placeholder">
-          <strong>상세페이지 삽입 영역</strong>
-          <small>제품별 상세페이지 이미지와 콘텐츠를 이 위치에 추가할 수 있습니다.</small>
-        </div>
+        {hasYukemuriDetail ? (
+          <div className="detail-image-stack" aria-label={`${selectedProduct.name} 상세페이지`}>
+            {yukemuriDetailImages.map((image, index) => (
+              <img key={image} src={image} alt={`${selectedProduct.name} 상세페이지 ${index + 1}`} loading="lazy" />
+            ))}
+          </div>
+        ) : (
+          <div className="detail-placeholder">
+            <strong>상세페이지 준비중</strong>
+            <small>제품별 상세페이지 이미지와 콘텐츠를 이 위치에 추가할 수 있습니다.</small>
+          </div>
+        )}
         <div className="detail-guide-list">
           <details open>
             <summary>주의사항</summary>

@@ -1074,6 +1074,20 @@ img {
   font-size: 13px;
 }
 
+.detail-image-stack {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 0;
+  background: #fff;
+}
+
+.detail-image-stack img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .detail-guide-list {
   margin-top: 42px;
   border-top: 1px solid #111;
@@ -2548,6 +2562,11 @@ img {
 
   .detail-placeholder small {
     font-size: 11px;
+  }
+
+  .detail-image-stack {
+    width: 100%;
+    max-width: 100%;
   }
 
   .detail-guide-list {
