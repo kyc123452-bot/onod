@@ -152,6 +152,13 @@ const shopProducts = [
   },
 ];
 
+const homeProducts = [
+  shopProducts.find((product) => product.name === "유케무리 기소 히노키 배스 티"),
+  shopProducts.find((product) => product.name === "오노드 사우나 울 캡"),
+  shopProducts.find((product) => product.name === "오노드 사우나 아로마 타월 미스트"),
+  shopProducts.find((product) => product.name === "오노드 두피 샴푸"),
+].filter(Boolean);
+
 const CART_STORAGE_KEY = "onod-cart";
 
 const getProductKey = (product) => `${product.line}::${product.name}`;
@@ -1062,7 +1069,7 @@ function BestItems() {
         <a href="#제품">전체 제품 보기</a>
       </div>
       <div className="product-grid">
-        {products.map((product) => (
+        {homeProducts.map((product) => (
           <ProductCard key={product.name} product={product} />
         ))}
       </div>
