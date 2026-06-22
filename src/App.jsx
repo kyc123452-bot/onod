@@ -8,6 +8,7 @@ import productBathTeaSingle from "./assets/product-bath-tea-single.png";
 import productShampoo from "./assets/product-shampoo.jpg";
 import productBodywash from "./assets/product-bodywash.png";
 import categoryHair from "./assets/category-hair.jpg";
+import categoryHairOnod from "./assets/category-hair-onod.png";
 import categoryBody from "./assets/category-body.jpg";
 import categoryBodyOnod from "./assets/category-body-onod.png";
 import categoryBathOnsen from "./assets/category-bath-onsen.png";
@@ -194,7 +195,7 @@ const categories = [
   {
     title: "HAIR",
     body: "린스 없이도 부드럽고 건강하게 감기는 헤어케어",
-    image: categoryHair,
+    image: categoryHairOnod,
   },
   {
     title: "SAUNA",
