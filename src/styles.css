@@ -2132,9 +2132,10 @@ img {
 
 .therapy {
   position: relative;
-  max-width: var(--max);
+  width: 100%;
+  max-width: none;
   height: 457px;
-  margin: 40px auto 0;
+  margin: 40px 0 0;
   overflow: hidden;
   color: #fff;
   background: #222;
@@ -2150,7 +2151,7 @@ img {
 .therapy-copy {
   position: absolute;
   inset: 0;
-  padding: 70px 70px;
+  padding: 70px clamp(40px, 8vw, 140px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
