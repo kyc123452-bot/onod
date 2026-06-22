@@ -1075,7 +1075,7 @@ img {
 }
 
 .detail-image-stack {
-  max-width: 900px;
+  width: min(100%, 720px);
   margin: 0 auto;
   display: grid;
   gap: 0;
@@ -2566,7 +2566,6 @@ img {
 
   .detail-image-stack {
     width: 100%;
-    max-width: 100%;
   }
 
   .detail-guide-list {
