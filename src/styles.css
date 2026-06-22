@@ -1649,9 +1649,22 @@ img {
   max-width: 720px;
   margin: 0 auto;
   display: grid;
-  gap: 34px;
+  gap: 58px;
   border-top: 1px solid #111;
   padding-top: 56px;
+}
+
+.letter-body section {
+  display: grid;
+  gap: 20px;
+}
+
+.letter-body h2 {
+  margin: 0 0 4px;
+  font-size: 26px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  word-break: keep-all;
 }
 
 .letter-body p {
@@ -1672,6 +1685,38 @@ img {
   line-height: 1.45;
   font-weight: 700;
   word-break: keep-all;
+}
+
+.letter-references {
+  max-width: 720px;
+  margin: 70px auto 0;
+  padding-top: 28px;
+  border-top: 1px solid #111;
+}
+
+.letter-references h2 {
+  margin: 0 0 24px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.letter-references ol {
+  margin: 0;
+  padding-left: 19px;
+  display: grid;
+  gap: 14px;
+}
+
+.letter-references li,
+.letter-references p {
+  color: #444;
+  font-size: 12px;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.letter-references p {
+  margin: 24px 0 0;
 }
 
 .letter-nav {
@@ -2744,8 +2789,16 @@ img {
   }
 
   .letter-body {
-    gap: 26px;
+    gap: 42px;
     padding-top: 38px;
+  }
+
+  .letter-body section {
+    gap: 16px;
+  }
+
+  .letter-body h2 {
+    font-size: 20px;
   }
 
   .letter-body p {
@@ -2757,6 +2810,21 @@ img {
     margin-top: 52px;
     padding-top: 28px;
     font-size: 22px;
+  }
+
+  .letter-references {
+    margin-top: 48px;
+    padding-top: 24px;
+  }
+
+  .letter-references h2 {
+    font-size: 17px;
+  }
+
+  .letter-references li,
+  .letter-references p {
+    font-size: 11px;
+    line-height: 1.8;
   }
 
   .letter-nav {
