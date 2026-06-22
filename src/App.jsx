@@ -13,7 +13,7 @@ import categoryBody from "./assets/category-body.jpg";
 import categoryBodyOnod from "./assets/category-body-onod.png";
 import categoryBathOnsen from "./assets/category-bath-onsen.png";
 import categorySaunaStones from "./assets/category-sauna-stones.png";
-import therapyBg from "./assets/therapy-bg.jpg";
+import therapySaunaRitual from "./assets/therapy-sauna-ritual.png";
 import onodLogo from "./assets/onod-logo.svg";
 import onodSaunaSteam from "./assets/onod-sauna-steam.png";
 
@@ -1192,7 +1192,7 @@ function Categories() {
 function Therapy() {
   return (
     <section className="therapy">
-      <img src={therapyBg} alt="" />
+      <img src={therapySaunaRitual} alt="" />
       <div className="therapy-copy">
         <h2>ONOD BATH REST SAUNA RITUAL</h2>
         <p>
