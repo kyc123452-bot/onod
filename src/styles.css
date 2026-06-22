@@ -1848,7 +1848,6 @@ img {
 }
 
 .home-letter-grid a {
-  min-height: 260px;
   display: flex;
   flex-direction: column;
   padding: 28px 26px 24px;
@@ -1873,7 +1872,7 @@ img {
 
 .home-letter-grid a > span {
   width: fit-content;
-  margin-top: auto;
+  margin-top: 42px;
   padding-bottom: 5px;
   border-bottom: 1px solid currentColor;
   font-size: 12px;
@@ -2910,7 +2909,6 @@ img {
   }
 
   .home-letter-grid a {
-    min-height: 200px;
     padding: 24px 20px 22px;
   }
 
@@ -2922,6 +2920,10 @@ img {
   .home-letter-grid p,
   .home-letter-grid a > span {
     font-size: 12px;
+  }
+
+  .home-letter-grid a > span {
+    margin-top: 32px;
   }
 
   .product-card h3 {
