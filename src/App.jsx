@@ -43,15 +43,6 @@ const heroSlides = [
 
 const products = [
   {
-    name: "유케무리 기소 히노키 배스 티 세트",
-    line: "배스",
-    desc: "유케무리 기소 히노키 배스 티 세트",
-    price: "38,000원",
-    discount: "20%",
-    image: productSet,
-    tags: ["BEST", "SET"],
-  },
-  {
     name: "유케무리 기소 히노키 배스 티",
     line: "배스",
     desc: "유케무리 기소 히노키 배스 티",
