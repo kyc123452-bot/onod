@@ -46,8 +46,9 @@ const products = [
     name: "유케무리 기소 히노키 배스 티",
     line: "배스",
     desc: "유케무리 기소 히노키 배스 티",
-    price: "18,000원",
-    discount: "15%",
+    price: "4,000원",
+    originalPrice: "4,900원",
+    discount: "18%",
     image: productBathTeaSingle,
     tags: ["BEST"],
   },
@@ -55,8 +56,9 @@ const products = [
     name: "오노드 사우나 울 캡",
     line: "사우나",
     desc: "오노드 사우나 울 캡",
-    price: "26,000원",
-    discount: "10%",
+    price: "16,000원",
+    originalPrice: "19,000원",
+    discount: "16%",
     image: productShampoo,
     tags: ["NEW"],
   },
@@ -64,8 +66,9 @@ const products = [
     name: "오노드 사우나 아로마 타월 미스트",
     line: "사우나",
     desc: "오노드 사우나 아로마 타월 미스트",
-    price: "24,000원",
-    discount: "10%",
+    price: "12,000원",
+    originalPrice: "15,000원",
+    discount: "20%",
     image: productBodywash,
     tags: ["NEW"],
   },
@@ -89,64 +92,72 @@ const shopProducts = [
   {
     name: "유케무리 히노키 배스 티 리필",
     line: "배스",
-    price: "15,000원",
-    discount: "10%",
+    price: "3,500원",
+    originalPrice: "4,500원",
+    discount: "22%",
     image: productSet,
     tags: ["NEW"],
   },
   {
     name: "오노드 온천 솔트 파우치",
     line: "배스",
-    price: "22,000원",
-    discount: "15%",
+    price: "6,900원",
+    originalPrice: "8,900원",
+    discount: "22%",
     image: categoryBathOnsen,
     tags: ["BEST"],
   },
   {
     name: "오노드 사우나 스톤 오일",
     line: "사우나",
-    price: "32,000원",
-    discount: "10%",
+    price: "14,000원",
+    originalPrice: "18,000원",
+    discount: "22%",
     image: categorySaunaStones,
     tags: ["NEW"],
   },
   {
     name: "오노드 릴랙스 바디워시",
     line: "바디",
-    price: "21,000원",
-    discount: "12%",
+    price: "11,000원",
+    originalPrice: "14,000원",
+    discount: "21%",
     image: productBodywash,
     tags: ["NEW"],
   },
   {
     name: "오노드 바디 로션",
     line: "바디",
-    price: "24,000원",
-    discount: "10%",
+    price: "12,000원",
+    originalPrice: "15,000원",
+    discount: "20%",
     image: categoryBody,
     tags: ["SET"],
   },
   {
     name: "오노드 두피 샴푸",
     line: "헤어",
-    price: "28,000원",
-    discount: "15%",
+    price: "13,000원",
+    originalPrice: "17,000원",
+    discount: "24%",
     image: productShampoo,
     tags: ["BEST"],
   },
   {
     name: "오노드 헤어 리추얼 미스트",
     line: "헤어",
-    price: "19,000원",
-    discount: "8%",
+    price: "9,900원",
+    originalPrice: "12,000원",
+    discount: "18%",
     image: categoryHair,
     tags: ["NEW"],
   },
   {
     name: "오노드 사우나 타월 세트",
     line: "사우나",
-    price: "29,000원",
-    discount: "10%",
+    price: "18,000원",
+    originalPrice: "22,000원",
+    discount: "18%",
     image: productSpray,
     tags: ["SET"],
   },
@@ -611,7 +622,9 @@ function ProductDetailPage({ productName, onAddToCart }) {
   const [cartNotice, setCartNotice] = useState("");
   const productPrice = parseWon(selectedProduct.price);
   const discountRate = parseWon(selectedProduct.discount);
-  const retailPrice = Math.round(productPrice / (1 - discountRate / 100) / 100) * 100;
+  const retailPrice = selectedProduct.originalPrice
+    ? parseWon(selectedProduct.originalPrice)
+    : Math.round(productPrice / (1 - discountRate / 100) / 100) * 100;
   const totalPrice = productPrice * quantity;
   const hasYukemuriDetail = selectedProduct.name === READY_PRODUCT_NAME;
 
@@ -628,9 +641,8 @@ function ProductDetailPage({ productName, onAddToCart }) {
     window.setTimeout(() => setCartNotice(""), 1800);
   };
 
-  const buySelectedProduct = () => {
-    onAddToCart?.(selectedProduct, quantity);
-    window.location.hash = "#장바구니";
+  const contactForSelectedProduct = () => {
+    window.location.hash = "#B2B 문의";
   };
 
   return (
@@ -698,8 +710,8 @@ function ProductDetailPage({ productName, onAddToCart }) {
             <strong>{formatWon(totalPrice)}</strong>
           </div>
           <div className="purchase-actions">
-            <button className="buy-now" type="button" onClick={buySelectedProduct}>
-              바로 구매하기
+            <button className="buy-now" type="button" onClick={contactForSelectedProduct}>
+              B2B 문의하기
             </button>
             <button type="button" onClick={addSelectedProductToCart}>
               장바구니
@@ -758,8 +770,8 @@ function ProductDetailPage({ productName, onAddToCart }) {
         <button type="button" onClick={addSelectedProductToCart}>
           장바구니
         </button>
-        <button className="buy-now" type="button" onClick={buySelectedProduct}>
-          구매하기
+        <button className="buy-now" type="button" onClick={contactForSelectedProduct}>
+          B2B 문의하기
         </button>
       </div>
     </section>
@@ -1282,8 +1294,10 @@ function CartPage({ isLoggedIn, onLogin, cartItems = [], onUpdateQuantity, onRem
                 <dd>{formatWon(total)}</dd>
               </div>
             </dl>
-            <p>50,000원 이상 구매 시 무료배송이며, 평일 기준 1-2일 내 순차 출고됩니다.</p>
-            <button type="button">주문하기</button>
+            <p>현재 온라인 결제 준비 중이며, 제품 도입과 대량 구매는 B2B 문의로 안내드립니다.</p>
+            <button type="button" onClick={() => { window.location.hash = "#B2B 문의"; }}>
+              B2B 문의하기
+            </button>
             <a href="#제품">계속 쇼핑하기</a>
           </aside>
         </div>
