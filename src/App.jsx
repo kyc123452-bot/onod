@@ -620,6 +620,7 @@ function ProductDetailPage({ productName, onAddToCart }) {
   const selectedProduct = shopProducts.find((product) => product.name === productName) || shopProducts[0];
   const [quantity, setQuantity] = useState(1);
   const [cartNotice, setCartNotice] = useState("");
+  const [showFullDetail, setShowFullDetail] = useState(false);
   const productPrice = parseWon(selectedProduct.price);
   const discountRate = parseWon(selectedProduct.discount);
   const retailPrice = selectedProduct.originalPrice
@@ -631,6 +632,7 @@ function ProductDetailPage({ productName, onAddToCart }) {
   useEffect(() => {
     setQuantity(1);
     setCartNotice("");
+    setShowFullDetail(false);
   }, [selectedProduct.name]);
 
   const decreaseQuantity = () => setQuantity((current) => Math.max(1, current - 1));
@@ -690,7 +692,6 @@ function ProductDetailPage({ productName, onAddToCart }) {
             옵션
             <select key={selectedProduct.name} defaultValue={`${selectedProduct.name} / 기본`}>
               <option>{selectedProduct.name} / 기본</option>
-              <option>{selectedProduct.name} / 선물 포장 추가</option>
             </select>
           </label>
           <div className="quantity-row">
@@ -729,11 +730,18 @@ function ProductDetailPage({ productName, onAddToCart }) {
       </div>
       <div className="product-detail-shell" id="product-detail">
         {hasYukemuriDetail ? (
-          <div className="detail-image-stack" aria-label={`${selectedProduct.name} 상세페이지`}>
-            {yukemuriDetailImages.map((image, index) => (
-              <img key={image} src={image} alt={`${selectedProduct.name} 상세페이지 ${index + 1}`} loading="lazy" />
-            ))}
-          </div>
+          <>
+            <div className="detail-image-stack" aria-label={`${selectedProduct.name} 상세페이지`}>
+              {(showFullDetail ? yukemuriDetailImages : yukemuriDetailImages.slice(0, 2)).map((image, index) => (
+                <img key={image} src={image} alt={`${selectedProduct.name} 상세페이지 ${index + 1}`} loading="lazy" />
+              ))}
+            </div>
+            {!showFullDetail && (
+              <button className="detail-more-button" type="button" onClick={() => setShowFullDetail(true)}>
+                상세페이지 더 보기
+              </button>
+            )}
+          </>
         ) : (
           <div className="detail-placeholder">
             <strong>상세페이지 준비중</strong>

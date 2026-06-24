@@ -1088,6 +1088,20 @@ img {
   display: block;
 }
 
+.detail-more-button {
+  width: min(100%, 720px);
+  min-height: 54px;
+  margin: 22px auto 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .detail-guide-list {
   margin-top: 42px;
   border-top: 1px solid #111;
@@ -2566,6 +2580,13 @@ img {
 
   .detail-image-stack {
     width: 100%;
+  }
+
+  .detail-more-button {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 18px;
+    font-size: 13px;
   }
 
   .detail-guide-list {
