@@ -17,17 +17,23 @@
 }
 
 :root {
-  --ink: #2c2c2c;
-  --muted: #8f8f8f;
-  --line: #e9e9e9;
-  --soft-blue: #eef8ff;
-  --soft-green: #b3efad;
-  --footer: #282828;
-  --danger: #cf0c0c;
+  --ink: #333333;
+  --muted: #77766f;
+  --line: #ddd7cc;
+  --soft-blue: #eef1ea;
+  --soft-green: #dfe7dc;
+  --paper: #faf8f2;
+  --paper-strong: #f3eee5;
+  --paper-muted: #ebe4d9;
+  --sage: #4a5544;
+  --sage-dark: #333b30;
+  --sand: #d8c9b2;
+  --footer: #4a5544;
+  --danger: #9b6049;
   --max: 1200px;
   font-family: "ITC Avant Garde Gothic Pro", "OnodPretendard", "Helvetica Neue", Arial, sans-serif;
   color: var(--ink);
-  background: #fff;
+  background: var(--paper);
 }
 
 * {
@@ -42,6 +48,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--paper);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -81,8 +88,8 @@ img {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid #f1f1f1;
+  background: rgba(250, 248, 242, 0.96);
+  border-bottom: 1px solid var(--line);
 }
 
 .nav-bar {
@@ -2227,6 +2234,214 @@ img {
   text-align: right;
 }
 
+.site-header {
+  background: rgba(250, 248, 242, 0.96);
+  border-bottom-color: var(--line);
+}
+
+.search-panel,
+.drawer-panel,
+.onod-page,
+.tab-page,
+.detail-tabs a,
+.detail-tabs button,
+.purchase-actions button,
+.category-filter button,
+.search-categories button,
+.cart-summary a,
+.purchase-option select,
+.quantity-control button,
+.login-form input,
+.b2b-form input,
+.b2b-form textarea {
+  background: var(--paper);
+}
+
+.search-result-grid a,
+.home-letter-grid a,
+.cart-summary,
+.purchase-thumbs button,
+.quantity-control,
+.detail-placeholder,
+.account-grid article,
+.cart-empty {
+  background: #fffdf8;
+}
+
+.product-ready-image,
+.purchase-image,
+.cart-item-image,
+.product-image-wrap,
+.b2b-form,
+.detail-placeholder,
+.account-grid article,
+.cart-empty,
+.search-result-grid mark {
+  background: var(--paper-strong);
+}
+
+.hero,
+.mobile-drawer.is-open .drawer-panel {
+  background: var(--soft-blue);
+}
+
+.hero-onod {
+  background: var(--sand);
+}
+
+.category-card,
+.category-card:nth-child(even),
+.category-card:nth-child(3) {
+  background: var(--paper-strong);
+  border-color: var(--line);
+}
+
+.search-field,
+.drawer-head,
+.onod-page-head,
+.tab-page-head,
+.shop-toolbar,
+.product-purchase,
+.purchase-price,
+.detail-tabs,
+.detail-guide-list,
+.b2b-note,
+.auth-panel,
+.account-summary,
+.cart-head,
+.cart-list,
+.letter-list,
+.newsletter-detail,
+.letter-body,
+.newsletter-detail blockquote,
+.letter-references,
+.best-heading,
+.home-newsletter-head,
+.home-letter-grid,
+.purchase-option select,
+.cart-summary,
+.cart-summary dl div:last-child,
+.b2b-form input,
+.b2b-form textarea,
+.detail-more-button,
+.purchase-actions button,
+.cart-empty a,
+.cart-summary button,
+.login-form button,
+.account-summary button {
+  border-color: var(--sage);
+}
+
+.purchase-meta,
+.quantity-row,
+.cart-item,
+.cart-summary dl div,
+.detail-guide-list details,
+.home-letter-grid a,
+.letter-list article,
+.drawer-foot,
+.purchase-meta div,
+.detail-tabs a,
+.detail-tabs button,
+.search-result-grid a,
+.account-grid article,
+.cart-empty,
+.quantity-control,
+.quantity-control output,
+.purchase-thumbs button,
+.login-form input {
+  border-color: var(--line);
+}
+
+.search-categories button.is-active,
+.category-filter button.is-active,
+.purchase-actions .buy-now,
+.detail-more-button,
+.b2b-form button,
+.login-form button,
+.cart-empty a,
+.cart-summary button,
+.letter-nav a.is-active,
+.mobile-buy-bar .buy-now {
+  border-color: var(--sage);
+  background: var(--sage);
+  color: #fffdf8;
+}
+
+.purchase-actions button,
+.account-summary button,
+.cart-summary a,
+.category-filter button,
+.search-categories button {
+  color: var(--sage-dark);
+}
+
+.tab-page,
+.onod-page,
+.search-field input,
+.purchase-option select,
+.b2b-form input,
+.b2b-form textarea,
+.detail-tabs a,
+.detail-tabs button,
+.purchase-actions button,
+.cart-summary a {
+  color: var(--ink);
+}
+
+.tab-page-head span,
+.b2b-note span,
+.letter-list article > span,
+.auth-panel span,
+.account-summary span,
+.cart-head span,
+.purchase-path,
+.letter-list small,
+.letter-meta,
+.account-grid small,
+.search-results > span,
+.category-index {
+  color: var(--sage);
+}
+
+.onod-page-head p,
+.onod-editorial p,
+.onod-rituals p,
+.tab-page-head p,
+.purchase-info > p,
+.purchase-meta dd,
+.detail-guide-list p,
+.auth-panel p,
+.account-summary p,
+.cart-summary p,
+.letter-body p,
+.home-newsletter-head p,
+.best-heading p,
+.category-card p,
+.product-card p,
+.home-letter-grid p,
+.letter-references li,
+.letter-references p {
+  color: #555555;
+}
+
+.product-tags span,
+.hero-dots button.active {
+  background: var(--sage);
+}
+
+.hero-dots button {
+  background: var(--sand);
+}
+
+.footer {
+  background: var(--footer);
+}
+
+.footer p {
+  color: #ede8df;
+}
+
 @media (max-width: 900px) {
   .nav-bar {
     height: 58px;
@@ -2617,8 +2832,8 @@ img {
     gap: 8px;
     align-items: center;
     padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
-    border-top: 1px solid #e5e5e5;
-    background: rgba(255, 255, 255, 0.98);
+    border-top: 1px solid var(--line);
+    background: rgba(250, 248, 242, 0.98);
   }
 
   .mobile-buy-bar span {
@@ -2635,14 +2850,14 @@ img {
 
   .mobile-buy-bar button {
     min-height: 44px;
-    border: 1px solid #111;
-    background: #fff;
+    border: 1px solid var(--sage);
+    background: var(--paper);
     font-size: 13px;
   }
 
   .mobile-buy-bar .buy-now {
-    background: #111;
-    color: #fff;
+    background: var(--sage);
+    color: #fffdf8;
   }
 
   .b2b-layout {
@@ -3026,7 +3241,7 @@ img {
     filter: none;
     transform: none;
     color: #fff;
-    background: #151515;
+    background: var(--sage-dark);
     border: 0;
     transition: none;
   }
