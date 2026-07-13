@@ -25,10 +25,10 @@
   --paper: #fffaf4;
   --paper-strong: #fff4e6;
   --paper-muted: #f0dcc0;
-  --sage: #35140c;
-  --sage-dark: #220a05;
+  --sage: #1f0905;
+  --sage-dark: #130403;
   --sand: #c9aa7d;
-  --footer: #35140c;
+  --footer: #1f0905;
   --danger: #9f4c31;
   --max: 1200px;
   font-family: "ITC Avant Garde Gothic Pro", "OnodPretendard", "Helvetica Neue", Arial, sans-serif;
@@ -88,7 +88,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(53, 20, 12, 0.98);
+  background: rgba(31, 9, 5, 0.98);
   border-bottom: 1px solid rgba(242, 231, 213, 0.18);
   color: #fbf5e8;
 }
@@ -2306,7 +2306,7 @@ img {
 }
 
 .site-header {
-  background: rgba(53, 20, 12, 0.98);
+  background: rgba(31, 9, 5, 0.98);
   border-bottom-color: rgba(242, 231, 213, 0.18);
   color: #fbf5e8;
 }
