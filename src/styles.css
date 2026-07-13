@@ -2344,6 +2344,16 @@ img {
   color: #fbf5e8;
 }
 
+.site-header .drawer-panel,
+.site-header .drawer-panel a,
+.site-header .drawer-panel button {
+  color: var(--sage);
+}
+
+.site-header .drawer-foot a {
+  color: #6d5547;
+}
+
 .search-panel,
 .drawer-panel,
 .onod-page,
