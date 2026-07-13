@@ -1477,9 +1477,10 @@ function HomeNewsletter() {
       <div className="home-letter-grid">
         {featuredLetters.map((letter) => (
           <a key={letter.number} href={`#뉴스레터?letter=${letter.number}`}>
+            <span className="home-letter-number">LETTER {letter.number}</span>
             <h3>{letter.title}</h3>
             <p>{letter.body}</p>
-            <span>읽어보기</span>
+            <span className="home-letter-link">읽어보기</span>
           </a>
         ))}
       </div>
