@@ -1342,6 +1342,7 @@ function ProductCard({ product, isSelected = false, detailHref }) {
       <div className="price-row">
         <strong>{product.price}</strong>
         <span>{product.discount}</span>
+        {product.originalPrice && <del>{product.originalPrice}</del>}
       </div>
     </article>
   );

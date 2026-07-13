@@ -2087,6 +2087,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 9px;
   padding: 0;
   font-size: 18px;
@@ -2547,6 +2548,15 @@ img {
 .best-items .product-card p,
 .best-items .price-row del {
   opacity: 0.74;
+}
+
+.best-items .price-row span {
+  color: #d8aa78;
+}
+
+.best-items .price-row del {
+  color: rgba(255, 250, 244, 0.55);
+  opacity: 1;
 }
 
 .feature {
