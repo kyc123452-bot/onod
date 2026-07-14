@@ -25,12 +25,12 @@
   --paper: #fffaf4;
   --paper-strong: #fff4e6;
   --paper-muted: #f0dcc0;
-  --sage: #23170f;
-  --sage-dark: #150f0a;
+  --sage: #25150e;
+  --sage-dark: #160d09;
   --sand: #c9aa7d;
-  --footer: #23170f;
+  --footer: #25150e;
   --danger: #9f4c31;
-  --hairline-dark: rgba(35, 23, 15, 0.42);
+  --hairline-dark: rgba(37, 21, 14, 0.42);
   --hairline-light: rgba(255, 250, 244, 0.24);
   --max: 1200px;
   font-family: "Helvetica Neue", "Apple SD Gothic Neo", "Noto Sans KR", "OnodPretendard", Arial, sans-serif;
@@ -97,7 +97,7 @@ strong {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(35, 23, 15, 0.98);
+  background: rgba(37, 21, 14, 0.98);
   border-bottom: 1px solid rgba(242, 231, 213, 0.12);
   color: #fbf5e8;
 }
@@ -2341,7 +2341,7 @@ strong {
 }
 
 .site-header {
-  background: rgba(35, 23, 15, 0.98);
+  background: rgba(37, 21, 14, 0.98);
   border-bottom-color: rgba(242, 231, 213, 0.12);
   color: #fbf5e8;
 }
