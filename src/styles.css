@@ -68,6 +68,13 @@ img {
   max-width: 100%;
 }
 
+h1,
+h2,
+h3,
+strong {
+  font-weight: 500;
+}
+
 .product-ready-image {
   width: 100%;
   height: 100%;
@@ -77,7 +84,7 @@ img {
   background: #e8e8e8;
   color: #777;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .product-ready-image span {
@@ -492,7 +499,7 @@ img {
   margin: 20px 0 0;
   font-size: 16px;
   line-height: 1.65;
-  font-weight: 700;
+  font-weight: 500;
   white-space: pre-line;
   word-break: keep-all;
   overflow-wrap: normal;
@@ -502,6 +509,7 @@ img {
 .category-card h2,
 .therapy h2 {
   margin: 0;
+  font-weight: 500;
   letter-spacing: 0;
 }
 
@@ -567,7 +575,7 @@ img {
   margin: 0;
   font-size: clamp(38px, 4.8vw, 68px);
   line-height: 1.12;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0;
   word-break: keep-all;
 }
@@ -626,6 +634,7 @@ img {
   font-size: clamp(32px, 4.3vw, 58px);
   line-height: 1.22;
   letter-spacing: 0;
+  font-weight: 500;
   word-break: keep-all;
 }
 
@@ -651,7 +660,7 @@ img {
   margin: 42px 0 16px;
   font-size: 24px;
   line-height: 1.3;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
 }
 
@@ -701,7 +710,7 @@ img {
   margin: 0;
   font-size: clamp(38px, 4.8vw, 66px);
   line-height: 1.12;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0;
   word-break: keep-all;
 }
@@ -759,7 +768,7 @@ img {
 .shop-toolbar p span {
   margin-left: 5px;
   color: #111;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .product-page-grid {
@@ -869,7 +878,7 @@ img {
 .purchase-price span {
   color: var(--danger);
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .purchase-price strong {
@@ -1107,7 +1116,7 @@ img {
   background: #111;
   color: #fff;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -1127,7 +1136,7 @@ img {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .detail-guide-list summary::after {
@@ -1307,7 +1316,7 @@ img {
   border-color: #fee500;
   background: #fee500;
   color: #191600;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .login-links {
@@ -1532,7 +1541,7 @@ img {
 
 .cart-summary dl div:last-child dd {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .cart-summary p {
@@ -1583,7 +1592,7 @@ img {
 .newsletter-toolbar p span {
   margin-left: 5px;
   color: #111;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .letter-list {
@@ -1720,7 +1729,7 @@ img {
   color: #111;
   font-size: 26px;
   line-height: 1.45;
-  font-weight: 700;
+  font-weight: 500;
   word-break: keep-all;
 }
 
@@ -2063,7 +2072,7 @@ img {
   background: #050505;
   color: #fff;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -2072,7 +2081,7 @@ img {
   margin: 19px 0 6px;
   font-size: 18px;
   line-height: 1.35;
-  font-weight: 700;
+  font-weight: 500;
   overflow-wrap: anywhere;
 }
 
@@ -2106,7 +2115,7 @@ img {
 
 .price-row span {
   color: var(--danger);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 15px;
 }
 
