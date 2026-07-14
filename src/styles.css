@@ -3,7 +3,7 @@
 @font-face {
   font-family: "OnodPretendard";
   src: url("./assets/Pretendard-Medium-subset.woff2") format("woff2");
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -30,8 +30,10 @@
   --sand: #c9aa7d;
   --footer: #260c06;
   --danger: #9f4c31;
+  --hairline-dark: rgba(38, 12, 6, 0.42);
+  --hairline-light: rgba(255, 250, 244, 0.24);
   --max: 1200px;
-  font-family: "ITC Avant Garde Gothic Pro", "OnodPretendard", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", "Apple SD Gothic Neo", "Noto Sans KR", "OnodPretendard", Arial, sans-serif;
   color: var(--ink);
   background: var(--paper);
 }
@@ -72,7 +74,7 @@ h1,
 h2,
 h3,
 strong {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .product-ready-image {
@@ -84,7 +86,7 @@ strong {
   background: #e8e8e8;
   color: #777;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .product-ready-image span {
@@ -96,7 +98,7 @@ strong {
   top: 0;
   z-index: 30;
   background: rgba(38, 12, 6, 0.98);
-  border-bottom: 1px solid rgba(242, 231, 213, 0.18);
+  border-bottom: 1px solid rgba(242, 231, 213, 0.12);
   color: #fbf5e8;
 }
 
@@ -499,7 +501,7 @@ strong {
   margin: 20px 0 0;
   font-size: 15px;
   line-height: 1.65;
-  font-weight: 500;
+  font-weight: 400;
   white-space: pre-line;
   word-break: keep-all;
   overflow-wrap: normal;
@@ -509,7 +511,7 @@ strong {
 .category-card h2,
 .therapy h2 {
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0;
 }
 
@@ -575,7 +577,7 @@ strong {
   margin: 0;
   font-size: clamp(38px, 4.8vw, 68px);
   line-height: 1.12;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0;
   word-break: keep-all;
 }
@@ -634,7 +636,7 @@ strong {
   font-size: clamp(32px, 4.3vw, 58px);
   line-height: 1.22;
   letter-spacing: 0;
-  font-weight: 500;
+  font-weight: 400;
   word-break: keep-all;
 }
 
@@ -660,7 +662,7 @@ strong {
   margin: 42px 0 16px;
   font-size: 24px;
   line-height: 1.3;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0;
 }
 
@@ -710,7 +712,7 @@ strong {
   margin: 0;
   font-size: clamp(38px, 4.8vw, 66px);
   line-height: 1.12;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0;
   word-break: keep-all;
 }
@@ -768,7 +770,7 @@ strong {
 .shop-toolbar p span {
   margin-left: 5px;
   color: #111;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .product-page-grid {
@@ -878,7 +880,7 @@ strong {
 .purchase-price span {
   color: var(--danger);
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .purchase-price strong {
@@ -1116,7 +1118,7 @@ strong {
   background: #111;
   color: #fff;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -1136,12 +1138,12 @@ strong {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .detail-guide-list summary::after {
   content: "+";
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .detail-guide-list details[open] summary::after {
@@ -1316,7 +1318,7 @@ strong {
   border-color: #fee500;
   background: #fee500;
   color: #191600;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .login-links {
@@ -1541,7 +1543,7 @@ strong {
 
 .cart-summary dl div:last-child dd {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .cart-summary p {
@@ -1592,7 +1594,7 @@ strong {
 .newsletter-toolbar p span {
   margin-left: 5px;
   color: #111;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .letter-list {
@@ -1729,7 +1731,7 @@ strong {
   color: #111;
   font-size: 26px;
   line-height: 1.45;
-  font-weight: 500;
+  font-weight: 400;
   word-break: keep-all;
 }
 
@@ -1863,7 +1865,7 @@ strong {
 }
 
 .best-items .best-heading {
-  border-top-color: rgba(255, 250, 244, 0.62);
+  border-top-color: var(--hairline-light);
 }
 
 .best-items .best-heading h2,
@@ -1940,8 +1942,8 @@ strong {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
-  border-top: 1px solid rgba(255, 250, 244, 0.34);
-  border-bottom: 1px solid rgba(255, 250, 244, 0.34);
+  border-top: 1px solid var(--hairline-light);
+  border-bottom: 1px solid var(--hairline-light);
 }
 
 .home-letter-grid a {
@@ -2072,7 +2074,7 @@ strong {
   background: #050505;
   color: #fff;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
 }
 
@@ -2081,7 +2083,7 @@ strong {
   margin: 19px 0 6px;
   font-size: 16px;
   line-height: 1.35;
-  font-weight: 500;
+  font-weight: 400;
   overflow-wrap: anywhere;
 }
 
@@ -2115,7 +2117,7 @@ strong {
 
 .price-row span {
   color: var(--danger);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
 }
 
@@ -2327,7 +2329,7 @@ strong {
 
 .site-header {
   background: rgba(38, 12, 6, 0.98);
-  border-bottom-color: rgba(242, 231, 213, 0.18);
+  border-bottom-color: rgba(242, 231, 213, 0.12);
   color: #fbf5e8;
 }
 
@@ -2440,7 +2442,7 @@ strong {
 .cart-summary button,
 .login-form button,
 .account-summary button {
-  border-color: var(--sage);
+  border-color: var(--hairline-dark);
 }
 
 .purchase-meta,
@@ -2474,7 +2476,7 @@ strong {
 .cart-summary button,
 .letter-nav a.is-active,
 .mobile-buy-bar .buy-now {
-  border-color: var(--sage);
+  border-color: var(--hairline-dark);
   background: var(--sage);
   color: #fbf5e8;
 }
@@ -2559,7 +2561,7 @@ strong {
 }
 
 .best-items .best-heading {
-  border-top-color: rgba(255, 250, 244, 0.62);
+  border-top-color: var(--hairline-light);
 }
 
 .best-items .best-heading h2,
@@ -2618,7 +2620,7 @@ strong {
 
 .home-newsletter-head,
 .home-letter-grid {
-  border-color: rgba(255, 250, 244, 0.34);
+  border-color: var(--hairline-light);
 }
 
 .home-newsletter-head h2,
@@ -2640,7 +2642,7 @@ strong {
 }
 
 .home-letter-grid a {
-  border-color: rgba(255, 250, 244, 0.18);
+  border-color: rgba(255, 250, 244, 0.14);
   background: transparent;
 }
 
