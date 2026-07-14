@@ -205,14 +205,14 @@ const categories = [
     size: "wide",
   },
   {
-    title: "BODY",
-    body: "샤워 후 피부 당김 없이 촉촉하게 남는 바디케어",
-    image: categoryBodyOnod,
-  },
-  {
     title: "HAIR",
     body: "린스 없이도 부드럽고 건강하게 감기는 헤어케어",
     image: categoryHairOnod,
+  },
+  {
+    title: "BODY",
+    body: "샤워 후 피부 당김 없이 촉촉하게 남는 바디케어",
+    image: categoryBodyOnod,
   },
   {
     title: "SAUNA",
