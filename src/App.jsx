@@ -28,7 +28,6 @@ const navItems = ["오노드", "제품", "B2B 문의", "뉴스레터"];
 
 const heroSlides = [
   {
-    title: "湯けむり",
     subtitle: "YUKEMURI",
     body: "일본 기소 숲의 히노키 향과 온천의 온기,\n티백 한 포로 즐기는 프리미엄 료칸 배스 티",
     image: heroOnodYukemuri,
@@ -482,7 +481,7 @@ function Hero() {
       </div>
       {slide.tone === "onod" && (
         <div className="hero-editorial">
-          <h1>{slide.title}</h1>
+          {slide.title && <h1>{slide.title}</h1>}
           <strong>{slide.subtitle}</strong>
           <p>{slide.body}</p>
         </div>
