@@ -128,7 +128,7 @@ strong {
   align-items: center;
   justify-content: center;
   gap: 34px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .nav-actions {
@@ -388,7 +388,7 @@ strong {
 
 .drawer-links a {
   width: fit-content;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -497,7 +497,7 @@ strong {
 .hero-editorial p {
   max-width: 460px;
   margin: 20px 0 0;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.65;
   font-weight: 500;
   white-space: pre-line;
@@ -1800,13 +1800,13 @@ strong {
 }
 
 .section-heading h2 {
-  font-size: 25px;
+  font-size: 23px;
   line-height: 1.4;
 }
 
 .section-heading p {
   margin: 22px 0 24px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .best-heading {
@@ -1820,7 +1820,7 @@ strong {
 
 .best-heading h2 {
   max-width: 560px;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1.35;
   word-break: keep-all;
 }
@@ -1909,7 +1909,7 @@ strong {
 .home-newsletter-head h2 {
   max-width: 620px;
   margin: 0;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1.35;
   word-break: keep-all;
 }
@@ -1918,7 +1918,7 @@ strong {
   max-width: 620px;
   margin: 14px 0 0;
   color: rgba(255, 250, 244, 0.74);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.7;
   word-break: keep-all;
 }
@@ -1975,7 +1975,7 @@ strong {
 .home-letter-grid h3 {
   margin: 0 0 16px;
   max-width: 360px;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1.48;
   word-break: keep-all;
 }
@@ -1983,7 +1983,7 @@ strong {
 .home-letter-grid p {
   margin: 0;
   color: rgba(255, 250, 244, 0.72);
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.75;
   word-break: keep-all;
 }
@@ -2079,7 +2079,7 @@ strong {
 .product-card h3 {
   min-height: auto;
   margin: 19px 0 6px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.35;
   font-weight: 500;
   overflow-wrap: anywhere;
@@ -2093,7 +2093,7 @@ strong {
   min-height: auto;
   margin: 0 0 8px;
   color: #757575;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.4;
   white-space: nowrap;
   overflow: hidden;
@@ -2109,14 +2109,14 @@ strong {
   flex-wrap: wrap;
   gap: 9px;
   padding: 0;
-  font-size: 18px;
+  font-size: 17px;
   background: transparent;
 }
 
 .price-row span {
   color: var(--danger);
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .price-row del {
@@ -2210,18 +2210,18 @@ strong {
 .category-card h2 {
   font-family: "Stint Ultra Expanded", Georgia, serif;
   font-weight: 400;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1.08;
 }
 
 .category-card:not(.wide) h2 {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .category-card p {
   margin: 0;
   color: #6d5547;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.55;
   word-break: keep-all;
   overflow-wrap: normal;
@@ -2285,14 +2285,14 @@ strong {
 
 .therapy-copy h2 {
   max-width: 840px;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.35;
 }
 
 .therapy-copy p {
   max-width: 540px;
   margin: 30px 0 0;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.8;
   white-space: pre-line;
   word-break: keep-all;
@@ -3384,7 +3384,7 @@ strong {
 
   .home-letter-grid h3 {
     margin: 0 0 12px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .home-letter-grid p,
@@ -3514,7 +3514,7 @@ strong {
 
   .category-card h2,
   .category-card:not(.wide) h2 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .category-card p,
