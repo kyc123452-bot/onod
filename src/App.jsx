@@ -1509,6 +1509,9 @@ function Therapy() {
 function Footer() {
   return (
     <footer className="footer">
+      <a className="footer-logo" href="#top" aria-label="오노드 홈">
+        <img src={onodLogo} alt="ONOD" />
+      </a>
       <div>
         <a href="#소개">오노드 소개</a>
         <a href="#제품">제품</a>

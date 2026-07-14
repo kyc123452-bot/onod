@@ -2307,8 +2307,21 @@ strong {
   background: var(--footer);
   color: #fff;
   display: grid;
-  grid-template-columns: 180px 180px 1fr;
-  gap: 24px;
+  grid-template-columns: 132px 160px 160px 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+.footer-logo {
+  display: inline-flex;
+  width: 92px;
+  margin-top: 2px;
+}
+
+.footer-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .footer div {
@@ -3560,6 +3573,13 @@ strong {
     margin-top: 0;
     padding: 36px 24px 44px;
     grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+  }
+
+  .footer-logo {
+    grid-column: 1 / -1;
+    width: 84px;
+    margin-bottom: 4px;
   }
 
   .footer p {
