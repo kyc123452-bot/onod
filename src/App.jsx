@@ -14,7 +14,7 @@ import categoryBodyOnod from "./assets/category-body-onod.png";
 import categoryBathOnsen from "./assets/category-bath-onsen.png";
 import categorySaunaStones from "./assets/category-sauna-stones.png";
 import therapySaunaRitual from "./assets/therapy-sauna-ritual.png";
-import onodLogo from "./assets/onod-logo.svg";
+import onodLogo from "./assets/onod-logo-thin.svg";
 import onodSaunaSteam from "./assets/onod-sauna-steam.png";
 import yukemuriDetail01 from "./assets/yukemuri-detail-01.png";
 import yukemuriDetail02 from "./assets/yukemuri-detail-02.png";
