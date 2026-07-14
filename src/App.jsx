@@ -1353,7 +1353,11 @@ function BestItems() {
       <div className="section-heading best-heading">
         <div>
           <h2>오늘의 입욕과 사우나를 위한 선택</h2>
-          <p>배스 티부터 사우나 케어까지, 휴식의 온도를 정돈하는 오노드 추천 제품입니다.</p>
+          <p>
+            배스 티부터 사우나 케어까지,
+            <br />
+            휴식의 온도를 정돈하는 오노드 추천 제품입니다.
+          </p>
         </div>
         <a href="#제품">전체 제품 보기</a>
       </div>
