@@ -3474,8 +3474,8 @@ strong {
   .category-card img {
     position: static;
     width: 100%;
-    height: min(calc(100vw - 40px), 520px);
-    aspect-ratio: 1 / 1;
+    height: clamp(220px, 64vw, 330px);
+    aspect-ratio: auto;
     object-fit: cover;
     filter: saturate(0.86) contrast(0.96);
   }
@@ -3500,7 +3500,7 @@ strong {
   .category-copy {
     position: static;
     display: block;
-    padding: 22px 24px 26px;
+    padding: 20px 24px 24px;
     min-height: 0;
     text-shadow: none;
   }
@@ -3516,7 +3516,7 @@ strong {
 
   .category-card h2,
   .category-card:not(.wide) h2 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .category-card p,
