@@ -3571,7 +3571,7 @@ strong {
 
   .footer {
     margin-top: 0;
-    padding: 36px 24px 44px;
+    padding: 36px 32px 44px;
     grid-template-columns: 1fr 1fr;
     gap: 20px 24px;
   }
